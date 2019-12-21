@@ -1,0 +1,4 @@
+# -*- mode: shell-script -*-
+
+alias ls='ls -G'
+alias lsh='du -a | sort -h'

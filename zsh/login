@@ -1,0 +1,5 @@
+# -*- mode: shell-script -*-
+
+source_if_exists dotfiles-${UNAME:l}/zsh/login
+source_if_exists dotfiles-${DOMAIN:l}/zsh/login
+source_if_exists dotfiles-${HOST:l}/zsh/login

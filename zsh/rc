@@ -1,0 +1,57 @@
+# -*- mode: shell-script -*-
+
+autoload -Uz compinit zmv
+
+[[ ! -d ${XDG_CACHE_HOME}/zsh ]] && mkdir -p ${XDG_CACHE_HOME}/zsh
+compinit -d ${XDG_CACHE_HOME}/zsh/compdump
+zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/cache
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' users root ${USER}
+
+HISTFILE=${XDG_CACHE_HOME}/zsh/history
+HISTSIZE=65535
+PS1="%n@%m:%~ %# "
+SAVEHIST=${HISTSIZE}
+WORDCHARS=${WORDCHARS/\//}
+
+() {
+  local dir
+  for dir in ~/{.local/bin,bin} ${GOPATH:-~/go}/bin; do
+    [[ -d ${dir} ]] && path=(${dir} ${path})
+  done
+}
+
+alias bc='bc -lq'
+alias cp='cp -i'
+alias ddig='dig +noall +answer'
+alias df='df -h'
+alias du='du -h'
+alias dusum='du -d1 | sort -hr'
+alias ec='emacsclient -t'
+alias et='emacsclient -c'
+alias grep='grep --color=auto'
+alias la='ls -A'
+alias ll='ls -hl'
+alias lla='ls -Ahl'
+alias mv='mv -i'
+alias senv='env | sort'
+
+bindkey -e
+bindkey "^R" history-incremental-search-backward
+
+export EDITOR=vim
+export VISUAL=${EDITOR}
+
+setopt AUTO_CD
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+source_if_exists dotfiles-${UNAME:l}/zsh/rc
+source_if_exists dotfiles-${DOMAIN:l}/zsh/rc
+source_if_exists dotfiles-${HOST:l}/zsh/rc

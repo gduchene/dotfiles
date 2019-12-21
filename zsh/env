@@ -1,0 +1,16 @@
+# -*- mode: shell-script -*-
+
+source_if_exists() {
+  local f=~/.zshenv
+  [[ -f ${f:A:h:h}/$1 ]] && . ${f:A:h:h}/$1 || return 0
+}
+
+export UNAME=$(uname)
+export LC_ALL=en_US.UTF-8
+
+setopt EXTENDED_GLOB
+setopt REMATCH_PCRE
+
+source_if_exists dotfiles-${UNAME:l}/zsh/env
+source_if_exists dotfiles-${DOMAIN:l}/zsh/env
+source_if_exists dotfiles-${HOST:l}/zsh/env
