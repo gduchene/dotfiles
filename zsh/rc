@@ -3,7 +3,6 @@
 autoload -Uz compinit zmv
 
 [[ ! -d ${XDG_CACHE_HOME}/zsh ]] && mkdir -p ${XDG_CACHE_HOME}/zsh
-compinit -d ${XDG_CACHE_HOME}/zsh/compdump
 zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/cache
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
@@ -55,3 +54,5 @@ setopt SHARE_HISTORY
 source_if_exists dotfiles-${UNAME:l}/zsh/rc
 source_if_exists dotfiles-${DOMAIN:l}/zsh/rc
 source_if_exists dotfiles-${HOST:l}/zsh/rc
+
+compinit -d ${XDG_CACHE_HOME}/zsh/compdump
