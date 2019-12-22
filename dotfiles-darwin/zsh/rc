@@ -1,4 +1,5 @@
 # -*- mode: shell-script -*-
 
+alias df='df -Ph'
 alias ls='ls -G'
 alias lsh='du -a | sort -h'
