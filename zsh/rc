@@ -25,6 +25,7 @@ WORDCHARS=${WORDCHARS/\//}
 alias bc='bc -lq'
 alias cp='cp -i'
 alias ddig='dig +noall +answer'
+alias dfl='df -l'
 alias du='du -h'
 alias dusum='du -d1 | sort -hr'
 alias ec='emacsclient -t'
