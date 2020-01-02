@@ -1,0 +1,11 @@
+[alias]
+  br = branch
+  co = checkout
+  di = diff
+  st = status
+
+[branch]
+  autosetuprebase = always
+
+[user]
+  name = Grégoire Duchêne
