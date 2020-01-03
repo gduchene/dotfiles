@@ -1,0 +1,5 @@
+# -*- mode: conf-space -*-
+
+Host github
+  HostName github.com
+  User     git
