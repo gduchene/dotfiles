@@ -1,8 +1,9 @@
 [alias]
-  br = branch
-  co = checkout
-  di = diff
-  st = status
+  br  = branch
+  co  = checkout
+  di  = diff
+  dis = diff --staged
+  st  = status
 
 [branch]
   autosetuprebase = always
