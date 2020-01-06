@@ -5,6 +5,7 @@ source_if_exists() {
   [[ -f ${f:A:h:h}/$1 ]] && . ${f:A:h:h}/$1 || return 0
 }
 
+export DOMAIN=$(cut -d. -f2- -s <<<${HOST})
 export UNAME=$(uname)
 export LC_ALL=en_US.UTF-8
 

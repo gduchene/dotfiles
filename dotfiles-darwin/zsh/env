@@ -1,6 +1,5 @@
 # -*- mode: shell-script -*-
 
-export DOMAIN=$(cut -d. -f2- <<<${HOST})
 export GOPATH=~/Go
 export XDG_CACHE_HOME=~/Library/Caches
 export XDG_CONFIG_HOME=~/Library/Preferences
