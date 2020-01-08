@@ -6,7 +6,6 @@ source_if_exists() {
 
 export DOMAIN=$(cut -d. -f2- -s <<<${HOST})
 export UNAME=$(uname)
-export LC_ALL=en_US.UTF-8
 
 setopt EXTENDED_GLOB
 setopt REMATCH_PCRE
