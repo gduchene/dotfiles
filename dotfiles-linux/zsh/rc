@@ -1,3 +1,4 @@
 # -*- mode: shell-script -*-
 
 alias df='df -h'
+alias ls='ls --color'
