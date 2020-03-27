@@ -8,5 +8,8 @@
 [branch]
   autosetuprebase = always
 
+[diff]
+  algorithm = histogram
+
 [user]
   name = Grégoire Duchêne
