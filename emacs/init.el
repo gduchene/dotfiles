@@ -30,6 +30,8 @@
 (menu-bar-mode -1)
 (show-paren-mode 1)
 (tool-bar-mode -1)
+(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'ido-ignore-files ".DS_Store")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
