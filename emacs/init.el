@@ -60,6 +60,7 @@
 (add-hook 'c++-mode-hook (lambda () (google-set-c-style)))
 (add-hook 'go-mode-hook
           (lambda ()
+            (setq-local gofmt-command "goimports")
             (setq-local tab-width 2)
             (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 (add-hook 'ibuffer-mode-hook
