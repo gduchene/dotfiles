@@ -32,6 +32,7 @@
 (tool-bar-mode -1)
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'ido-ignore-files ".DS_Store")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
