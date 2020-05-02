@@ -1,5 +1,8 @@
 # -*- mode: conf-space -*-
 
+Host *
+  VerifyHostKeyDNS yes
+
 Host github
   HostName github.com
   User     git
