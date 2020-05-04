@@ -7,6 +7,8 @@
         ido-save-directory-list-file (concat cache-dir "ido.last")
         package-user-dir (concat data-dir "elpa")))
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (setq-default indent-tabs-mode nil
@@ -35,7 +37,6 @@
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'ido-ignore-files ".DS_Store")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
