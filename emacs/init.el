@@ -57,6 +57,7 @@
                   (split-window-horizontally)
                   (balance-windows)))
 
+(add-hook 'bazel-mode-hook (setq bazel-mode-buildifier-before-save t))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'c++-mode-hook (lambda () (google-set-c-style)))
 (add-hook 'go-mode-hook
