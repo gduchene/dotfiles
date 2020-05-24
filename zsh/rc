@@ -55,8 +55,8 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-source_if_exists dotfiles-${UNAME:l}/zsh/rc
-source_if_exists dotfiles-${DOMAIN:l}/zsh/rc
-source_if_exists dotfiles-${HOST:l}/zsh/rc
+source_if_exists dotfiles-${UNAME}/zsh/rc
+source_if_exists dotfiles-${DOMAIN}/zsh/rc
+source_if_exists dotfiles-${HOST}/zsh/rc
 
 compinit -d ${XDG_CACHE_HOME}/zsh/compdump
