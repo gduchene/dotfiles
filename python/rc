@@ -1,0 +1,12 @@
+# -*- mode: python -*-
+
+import atexit
+import os
+import readline
+
+history_file = os.path.join(os.getenv('XDG_CACHE_HOME'), 'python_history')
+if os.path.exists(history_file):
+    readline.read_history_file(history_file)
+readline.set_history_length(1000)
+atexit.register(readline.write_history_file, history_file)
+del atexit, history_file, os, readline

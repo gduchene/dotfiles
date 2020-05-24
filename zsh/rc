@@ -43,6 +43,7 @@ bindkey -e
 bindkey "^R" history-incremental-search-backward
 
 export EDITOR=vim
+export PYTHONSTARTUP=${XDG_CONFIG_HOME}/python/rc
 export VISUAL=${EDITOR}
 
 setopt AUTO_CD
