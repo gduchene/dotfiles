@@ -1,5 +1,9 @@
 # -*- mode: shell-script -*-
 
+export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent
+
+[[ ! -S ${SSH_AUTH_SOCK} ]] && ssh-agent -a ${SSH_AUTH_SOCK} >/dev/null
+
 source_if_exists dotfiles-${UNAME}/zsh/login
 source_if_exists dotfiles-${DOMAIN}/zsh/login
 source_if_exists dotfiles-${HOST}/zsh/login
