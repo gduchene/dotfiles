@@ -3,3 +3,5 @@
 alias df='df -Ph'
 alias ls='ls -G'
 alias lsh='du -a | sort -h'
+alias pip=pip3
+alias python=python3
