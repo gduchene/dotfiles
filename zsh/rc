@@ -40,7 +40,8 @@ alias mv='mv -i'
 alias senv='env | sort'
 
 bindkey -e
-bindkey "^R" history-incremental-search-backward
+bindkey '^F' history-incremental-search-forward
+bindkey '^R' history-incremental-search-backward
 
 export EDITOR=vim
 export LESSHISTFILE=${XDG_CACHE_HOME}/less_history
