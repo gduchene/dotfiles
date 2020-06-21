@@ -18,6 +18,7 @@
       inhibit-startup-screen t
       recenter-positions '(3 middle top bottom)
       require-final-newline t
+      sentence-end-double-space nil
       show-paren-delay 0
       uniquify-buffer-name-style 'post-forward-angle-brackets
       vc-follow-symlinks nil)
