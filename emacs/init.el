@@ -39,6 +39,9 @@
 (add-to-list 'ido-ignore-files ".DS_Store")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
+(require 'magit)
+(require 'evil-magit)
+
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
