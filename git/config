@@ -11,5 +11,8 @@
 [diff]
   algorithm = histogram
 
+[pull]
+  ff = only
+
 [user]
   name = Grégoire Duchêne
