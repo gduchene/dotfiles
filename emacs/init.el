@@ -41,6 +41,11 @@
 (add-to-list 'ido-ignore-files "__pycache__")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
+(if (display-graphic-p)
+    (progn
+      (blink-cursor-mode -1)
+      (scroll-bar-mode -1)))
+
 (require 'magit)
 (require 'evil-magit)
 
