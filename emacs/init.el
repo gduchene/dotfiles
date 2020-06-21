@@ -37,6 +37,7 @@
 (add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'ido-ignore-files ".DS_Store")
+(add-to-list 'ido-ignore-files "__pycache__")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
 (require 'magit)
