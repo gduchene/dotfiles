@@ -5,7 +5,8 @@
         backup-directory-alist `(("." . ,(concat cache-dir "backups")))
         custom-file (concat cache-dir "custom.el")
         ido-save-directory-list-file (concat cache-dir "ido.last")
-        package-user-dir (concat data-dir "elpa")))
+        package-user-dir (concat data-dir "elpa")
+        transient-history-file (concat cache-dir "transient/history.el")))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
