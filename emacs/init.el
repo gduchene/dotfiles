@@ -8,6 +8,10 @@
         package-user-dir (concat data-dir "elpa")
         transient-history-file (concat cache-dir "transient/history.el")))
 
+(defun source-if-exists (filename)
+  (load (concat (file-truename "~/.emacs.d/../")
+                (substitute-in-file-name filename)) t))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -78,3 +82,7 @@
 (add-hook 'ibuffer-mode-hook
           (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 (add-hook 'sh-mode-hook (lambda () (setq-local sh-basic-offset 2)))
+
+(source-if-exists "dotfiles-${UNAME}/emacs/init.el")
+(source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
+(source-if-exists "dotfiles-${HOST}/emacs/init.el")
