@@ -15,13 +15,6 @@ PS1="%n@%m:%~ %# "
 SAVEHIST=${HISTSIZE}
 WORDCHARS=${WORDCHARS/\//}
 
-() {
-  local dir
-  for dir in ~/{.local/bin,bin} ${GOPATH:-~/go}/bin; do
-    [[ -d ${dir} ]] && path=(${dir} ${path})
-  done
-}
-
 alias bc='bc -lq'
 alias cp='cp -i'
 alias ddig='dig +noall +answer'
