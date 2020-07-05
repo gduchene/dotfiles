@@ -81,6 +81,10 @@
             (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 (add-hook 'ibuffer-mode-hook
           (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+(add-hook 'server-switch-hook
+          (lambda ()
+            (menu-bar-mode -1)
+            (scroll-bar-mode -1)))
 (add-hook 'sh-mode-hook (lambda () (setq-local sh-basic-offset 2)))
 
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
