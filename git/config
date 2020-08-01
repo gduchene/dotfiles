@@ -3,6 +3,7 @@
   co  = checkout
   di  = diff
   dis = diff --staged
+  gi  = grep -i
   st  = status
 
 [branch]
