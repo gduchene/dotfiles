@@ -6,10 +6,13 @@
   st  = status
 
 [branch]
-  autosetuprebase = always
+  autoSetupRebase = always
 
 [diff]
   algorithm = histogram
+
+[grep]
+  lineNumber = true
 
 [pull]
   ff = only
