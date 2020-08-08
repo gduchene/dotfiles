@@ -1,0 +1,8 @@
+# -*- mode: shell-script -*-
+
+() {
+  local dir
+  for dir in /usr/local/opt/gnu-tar/libexec/gnubin; do
+    [[ -d ${dir} ]] && path=(${dir} ${path})
+  done
+}
