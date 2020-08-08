@@ -2,7 +2,7 @@
 
 () {
   local dir
-  for dir in /usr/local/opt/gnu-tar/libexec/gnubin; do
+  for dir in /usr/local/opt/{gnu-tar,grep}/libexec/gnubin; do
     [[ -d ${dir} ]] && path=(${dir} ${path})
   done
 }
