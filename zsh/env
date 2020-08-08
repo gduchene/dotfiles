@@ -14,12 +14,3 @@ setopt REMATCH_PCRE
 source_if_exists dotfiles-${UNAME}/zsh/env
 source_if_exists dotfiles-${DOMAIN}/zsh/env
 source_if_exists dotfiles-${HOST}/zsh/env
-
-() {
-  local dir
-  for dir in ~/{.local/bin,bin} ${GOPATH:-~/go}/bin; do
-    if [[ -d ${dir} && ${path[(I)${dir}]} -eq 0 ]]; then
-      path=(${dir} ${path})
-    fi
-  done
-}
