@@ -1,5 +1,15 @@
 # -*- mode: shell-script -*-
 
+() {
+  local dir
+  for dir (
+      $(dotfiles_root)/zsh/functions
+      $(dotfiles_root)/dotfiles-{${UNAME},${DOMAIN},${HOST}}/zsh/functions
+  ); do
+    [[ -d ${dir} ]] && fpath=(${dir} ${fpath})
+  done
+}
+
 autoload -Uz compinit zmv
 
 [[ ! -d ${XDG_CACHE_HOME}/zsh ]] && mkdir -p ${XDG_CACHE_HOME}/zsh
