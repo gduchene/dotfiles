@@ -16,6 +16,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
 (setq ibuffer-saved-filter-groups
       '(("default"
          ("Emacs" (or (mode . completion-list-mode)
@@ -67,8 +72,13 @@
   (blink-cursor-mode -1)
   (scroll-bar-mode -1))
 
-(require 'magit)
-(require 'evil-magit)
+(use-package magit
+  :init (setq git-commit-summary-max-length 50)
+  :config (require 'evil-magit)
+  :bind (("C-c k" . magit-status))
+  :ensure t)
+
+(use-package evil-magit :ensure t)
 
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
