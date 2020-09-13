@@ -36,6 +36,7 @@
 (setq-default indent-tabs-mode nil
               fill-column 72)
 (setq backup-by-copying t
+      display-time-24hr-format t
       inhibit-startup-screen t
       recenter-positions '(3 middle top bottom)
       require-final-newline t
