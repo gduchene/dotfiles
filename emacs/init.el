@@ -16,6 +16,23 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(setq ibuffer-saved-filter-groups
+      '(("default"
+         ("Emacs" (or (mode . completion-list-mode)
+                      (mode . debugger-mode)
+                      (mode . help-mode)
+                      (mode . messages-buffer-mode)
+                      (name . "^\\*scratch\\*$")))
+         ("Magit" (or (mode . magit-process-mode)
+                      (mode . magit-status-mode)))
+         ("Dired" (mode . dired-mode))
+         ("Shells" (mode . term-mode))
+         ("Manuals" (or (mode . Info-mode)
+                        (mode . Man-mode))))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+
 (setq-default indent-tabs-mode nil
               fill-column 72)
 (setq backup-by-copying t
