@@ -33,7 +33,8 @@
          ("Dired" (mode . dired-mode))
          ("Shells" (mode . term-mode))
          ("Manuals" (or (mode . Info-mode)
-                        (mode . Man-mode))))))
+                        (mode . Man-mode)))))
+      ibuffer-show-empty-filter-groups nil)
 
 (add-hook 'ibuffer-mode-hook
           (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
