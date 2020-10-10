@@ -4,7 +4,6 @@
         auto-save-list-file-prefix (concat cache-dir "auto-save/")
         backup-directory-alist `(("." . ,(concat cache-dir "backups")))
         custom-file (concat cache-dir "custom.el")
-        ido-save-directory-list-file (concat cache-dir "ido.last")
         package-user-dir (concat data-dir "elpa")
         transient-history-file (concat cache-dir "transient/history.el")))
 
@@ -58,20 +57,26 @@
 (electric-indent-mode -1)
 (evil-mode 1)
 (global-auto-revert-mode 1)
-(ido-mode 1)
 (menu-bar-mode -1)
 (show-paren-mode 1)
 (tool-bar-mode -1)
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
-(add-to-list 'ido-ignore-files ".DS_Store")
-(add-to-list 'ido-ignore-files "__pycache__")
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
 (when (display-graphic-p)
   (blink-cursor-mode -1)
   (scroll-bar-mode -1))
+
+(use-package diminish :ensure t)
+
+(use-package ivy
+  :config (ivy-mode 1)
+  :bind (:map ivy-minibuffer-map ("C-w" . ivy-backward-delete-char))
+  :demand t
+  :diminish
+  :ensure t)
 
 (use-package magit
   :init (setq git-commit-summary-max-length 50)
