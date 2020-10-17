@@ -71,6 +71,10 @@
 
 (use-package diminish :ensure t)
 
+(use-package google-c-style
+  :hook (c++-mode . google-set-c-style)
+  :ensure t)
+
 (use-package ivy
   :config (ivy-mode 1)
   :bind (:map ivy-minibuffer-map ("C-w" . ivy-backward-delete-char))
@@ -107,7 +111,6 @@
 
 (add-hook 'bazel-mode-hook (setq bazel-mode-buildifier-before-save t))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'c++-mode-hook (lambda () (google-set-c-style)))
 (add-hook 'go-mode-hook
           (lambda ()
             (setq-local gofmt-command "goimports")
