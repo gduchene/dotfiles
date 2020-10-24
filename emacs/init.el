@@ -69,6 +69,10 @@
   (blink-cursor-mode -1)
   (scroll-bar-mode -1))
 
+(use-package bazel-mode
+  :config (setq bazel-mode-buildifier-before-save t)
+  :ensure t)
+
 (use-package diminish :ensure t)
 
 (use-package google-c-style
@@ -109,7 +113,6 @@
                   (split-window-horizontally)
                   (balance-windows)))
 
-(add-hook 'bazel-mode-hook (setq bazel-mode-buildifier-before-save t))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'go-mode-hook
           (lambda ()
