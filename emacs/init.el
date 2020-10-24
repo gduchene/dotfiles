@@ -73,6 +73,8 @@
   :config (setq bazel-mode-buildifier-before-save t)
   :ensure t)
 
+(use-package clang-format :ensure t)
+
 (use-package diminish :ensure t)
 
 (use-package google-c-style
