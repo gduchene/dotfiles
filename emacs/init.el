@@ -77,6 +77,15 @@
 
 (use-package diminish :ensure t)
 
+(use-package go-mode
+  :init
+  (setq gofmt-command "goimports")
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq tab-width 2)
+              (add-hook 'before-save-hook 'gofmt-before-save nil t)))
+  :ensure t)
+
 (use-package google-c-style
   :hook (c++-mode . google-set-c-style)
   :ensure t)
@@ -116,11 +125,6 @@
                   (balance-windows)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'go-mode-hook
-          (lambda ()
-            (setq-local gofmt-command "goimports")
-            (setq-local tab-width 2)
-            (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 (add-hook 'ibuffer-mode-hook
           (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 (add-hook 'server-switch-hook
