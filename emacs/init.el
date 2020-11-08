@@ -116,6 +116,7 @@
 
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
+(global-set-key (kbd "C-c s") 'toggle-frame-maximized)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x 0")
                 (lambda ()
