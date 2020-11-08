@@ -79,7 +79,8 @@
 
 (use-package go-mode
   :init
-  (setq gofmt-command "goimports")
+  (when (executable-find "goimports")
+    (setq gofmt-command "goimports"))
   (add-hook 'go-mode-hook
             (lambda ()
               (setq tab-width 2)
