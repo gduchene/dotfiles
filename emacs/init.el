@@ -73,7 +73,11 @@
   :config (setq bazel-mode-buildifier-before-save t)
   :ensure t)
 
-(use-package clang-format :ensure t)
+(use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
+
+(use-package clang-format
+  :init (setq clang-format-style "google")
+  :ensure t)
 
 (use-package diminish :ensure t)
 
