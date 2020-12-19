@@ -1,0 +1,14 @@
+# -*- mode: sh -*-
+
+case $1 in
+  close)
+    hdiutil unmount -quiet $2
+    ;;
+  open)
+    op get item ${2:t} --fields password --session $(op signin --raw) \
+      | hdiutil attach -quiet -stdinpass $2
+    ;;
+  *)
+    return 1
+    ;;
+esac

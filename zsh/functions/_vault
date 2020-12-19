@@ -1,0 +1,3 @@
+#compdef vault
+
+_arguments ": :(close open)" ": :_path_files"
