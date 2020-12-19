@@ -114,6 +114,10 @@
 
 (use-package evil-magit :ensure t)
 
+(defun center-frame (&optional frame)
+    (interactive)
+  (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
+
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
 (global-set-key (kbd "C-c s") 'toggle-frame-maximized)
