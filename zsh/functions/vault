@@ -5,8 +5,13 @@ case $1 in
     hdiutil unmount -quiet $2
     ;;
   open)
-    op get item ${2:t} --fields password --session $(op signin --raw) \
+    local session=$(op signin --raw)
+    if [[ -z ${session} ]]; then
+      return 1
+    fi
+    op get item ${2:t} --fields password --session ${session} \
       | hdiutil attach -quiet -stdinpass $2
+    op signout --session ${session}
     ;;
   *)
     return 1

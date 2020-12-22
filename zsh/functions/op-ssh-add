@@ -18,11 +18,16 @@ if [[ -z ${pub} ]]; then
   return $?
 fi
 
+local session=$(op signin --raw)
+if [[ -z ${session} ]]; then
+  return 1
+fi
 zmodload zsh/zpty
 zpty ssh $(which -p ssh-add) $@
 zpty -w ssh $(op get item                \
                  $(cut -d' ' -f3 ${pub}) \
                  --fields password       \
-                 --session $(op signin --raw))
+                 --session ${session})
 zpty -r ssh
 zpty -d ssh
+op signout --session ${session}
