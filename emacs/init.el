@@ -85,6 +85,8 @@
 
 (use-package diminish :ensure t)
 
+(use-package evil-magit :ensure t)
+
 (use-package go-mode
   :init
   (when (executable-find "goimports")
@@ -111,8 +113,6 @@
   :config (require 'evil-magit)
   :bind (("C-c k" . magit-status))
   :ensure t)
-
-(use-package evil-magit :ensure t)
 
 (defun center-frame (&optional frame)
     (interactive)
@@ -150,3 +150,5 @@
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
 (source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
 (source-if-exists "dotfiles-${HOST}/emacs/init.el")
+
+(put 'dired-find-alternate-file 'disabled nil)
