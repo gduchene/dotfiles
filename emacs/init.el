@@ -90,7 +90,8 @@
 (use-package go-mode
   :init
   (when (executable-find "goimports")
-    (setq gofmt-command "goimports"))
+    (setq gofmt-args '("-local" "go.awhk.org")
+          gofmt-command "goimports"))
   (add-hook 'go-mode-hook
             (lambda ()
               (setq tab-width 2)
@@ -147,8 +148,8 @@
             (scroll-bar-mode -1)))
 (add-hook 'sh-mode-hook (lambda () (setq-local sh-basic-offset 2)))
 
+(put 'dired-find-alternate-file 'disabled nil)
+
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
 (source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
 (source-if-exists "dotfiles-${HOST}/emacs/init.el")
-
-(put 'dired-find-alternate-file 'disabled nil)
