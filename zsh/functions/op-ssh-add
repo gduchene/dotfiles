@@ -35,7 +35,7 @@ if [[ -z ${session} ]]; then
   return 1
 fi
 zmodload zsh/zpty
-zpty ssh $(which -p ssh-add) $@
+zpty ssh $(which -p ssh-add) ${prv}
 zpty -w ssh $(op list items --session ${session} --tags SSH \
                 | op get item                               \
                      --fields fingerprint,password          \
