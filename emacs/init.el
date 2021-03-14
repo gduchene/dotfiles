@@ -85,6 +85,11 @@
 
 (use-package diminish :ensure t)
 
+(use-package dired
+  :config
+  (put 'dired-find-alternate-file 'disabled nil)
+  (require 'dired-x))
+
 (use-package evil-magit :ensure t)
 
 (use-package go-mode
@@ -147,8 +152,6 @@
             (menu-bar-mode -1)
             (scroll-bar-mode -1)))
 (add-hook 'sh-mode-hook (lambda () (setq-local sh-basic-offset 2)))
-
-(put 'dired-find-alternate-file 'disabled nil)
 
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
 (source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
