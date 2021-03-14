@@ -34,13 +34,22 @@ local session=$(op signin --raw)
 if [[ -z ${session} ]]; then
   return 1
 fi
+
 zmodload zsh/zpty
 zpty ssh $(which -p ssh-add) ${prv}
-zpty -w ssh $(op list items --session ${session} --tags SSH \
+
+_cleanup() {
+  zpty -d ssh
+  op signout --session $1
+  trap -
+  unfunction _cleanup
+}
+trap "_cleanup ${session}" EXIT HUP INT TERM
+
+zpty -w ssh $(trap -
+              op list items --session ${session} --tags SSH \
                 | op get item                               \
                      --fields fingerprint,password          \
                      --session ${session} -                 \
                 | jq -jr "select(.fingerprint == \"${fp}\") | .password")
 zpty -r ssh
-zpty -d ssh
-op signout --session ${session}
