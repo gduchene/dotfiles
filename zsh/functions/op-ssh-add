@@ -16,11 +16,14 @@ if [[ ${@[1]} =~ '-[DdKLlTXx]' ]]; then
   return $?
 fi
 
-local fp prv pub
+local args=$@ fp prv pub
 for prv (${@[-1]} ~/.ssh/id_{ecdsa,ed25519}{,_sk}); do
   if [[ -f ${prv}.pub ]]; then
     pub=${prv}.pub
     fp=$(cut -d' ' -f2 <<< $(ssh-keygen -f ${pub} -l))
+    if [[ ${prv} != ${@[-1]} ]]; then
+      args+=(${prv})
+    fi
     break
   fi
 done
@@ -36,7 +39,7 @@ if [[ -z ${session} ]]; then
 fi
 
 zmodload zsh/zpty
-zpty ssh $(which -p ssh-add) ${prv}
+zpty ssh $(which -p ssh-add) ${args}
 
 _cleanup() {
   zpty -d ssh
