@@ -120,6 +120,8 @@
   :bind (("C-c k" . magit-status))
   :ensure t)
 
+(use-package org :init (setq org-startup-folded "showall"))
+
 (defun center-frame (&optional frame)
     (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
