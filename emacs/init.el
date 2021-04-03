@@ -8,7 +8,7 @@
         transient-history-file (concat cache-dir "transient/history.el")))
 
 (defun source-if-exists (filename)
-  (load (concat (file-truename "~/.emacs.d/../")
+  (load (concat (file-truename user-emacs-directory) "../"
                 (substitute-in-file-name filename)) t))
 
 (require 'package)
