@@ -90,6 +90,10 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (require 'dired-x))
 
+(use-package exec-path-from-shell
+  :config (exec-path-from-shell-initialize)
+  :ensure t)
+
 (use-package evil-magit :ensure t)
 
 (use-package go-mode
