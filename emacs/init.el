@@ -128,6 +128,16 @@
 
 (use-package org :init (setq org-startup-folded "showall"))
 
+(use-package term
+  :bind
+  (("C-c t" . (lambda ()
+                (interactive)
+                (set-buffer (make-term "terminal" shell-file-name))
+                (term-mode)
+                (term-char-mode)
+                (switch-to-buffer "*terminal*")
+                (evil-emacs-state)))))
+
 (defun center-frame (&optional frame)
     (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
