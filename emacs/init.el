@@ -20,24 +20,6 @@
   (package-install 'use-package))
 (require 'use-package)
 
-(setq ibuffer-saved-filter-groups
-      '(("default"
-         ("Emacs" (or (mode . completion-list-mode)
-                      (mode . debugger-mode)
-                      (mode . help-mode)
-                      (mode . messages-buffer-mode)
-                      (name . "^\\*scratch\\*$")))
-         ("Magit" (or (mode . magit-process-mode)
-                      (mode . magit-status-mode)))
-         ("Dired" (mode . dired-mode))
-         ("Shells" (mode . term-mode))
-         ("Manuals" (or (mode . Info-mode)
-                        (mode . Man-mode)))))
-      ibuffer-show-empty-filter-groups nil)
-
-(add-hook 'ibuffer-mode-hook
-          (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
-
 (setq-default indent-tabs-mode nil
               fill-column 72)
 (setq backup-by-copying t
@@ -111,6 +93,26 @@
   :hook (c++-mode . google-set-c-style)
   :ensure t)
 
+(use-package ibuffer
+  :init
+  (add-hook 'ibuffer-mode-hook
+            (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+  :config
+  (setq ibuffer-saved-filter-groups
+        '(("default"
+           ("Emacs" (or (mode . completion-list-mode)
+                        (mode . debugger-mode)
+                        (mode . help-mode)
+                        (mode . messages-buffer-mode)
+                        (name . "^\\*scratch\\*$")))
+           ("Magit" (or (mode . magit-process-mode)
+                        (mode . magit-status-mode)))
+           ("Dired" (mode . dired-mode))
+           ("Shells" (mode . term-mode))
+           ("Manuals" (or (mode . Info-mode)
+                          (mode . Man-mode)))))
+        ibuffer-show-empty-filter-groups nil))
+
 (use-package ivy
   :config (ivy-mode 1)
   :bind (:map ivy-minibuffer-map ("C-w" . ivy-backward-delete-char))
@@ -151,8 +153,6 @@
                   (balance-windows)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'ibuffer-mode-hook
-          (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
 (add-hook 'server-switch-hook
           (lambda ()
             (menu-bar-mode -1)
