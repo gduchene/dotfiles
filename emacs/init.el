@@ -137,6 +137,8 @@
                 (switch-to-buffer "*terminal*")
                 (evil-emacs-state)))))
 
+(use-package sh-script :config (setq sh-basic-offset 2))
+
 (defun center-frame (&optional frame)
     (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
@@ -166,7 +168,6 @@
           (lambda ()
             (menu-bar-mode -1)
             (scroll-bar-mode -1)))
-(add-hook 'sh-mode-hook (lambda () (setq-local sh-basic-offset 2)))
 
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
 (source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
