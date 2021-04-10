@@ -5,3 +5,10 @@ alias ls='ls -G'
 alias lsh='du -a | sort -h'
 alias pip=pip3
 alias python=python3
+
+() {
+  local emacs=~/Applications/Emacs.app/Contents/MacOS/Emacs
+  if ! which emacs >/dev/null && [[ -x ${emacs} ]]; then
+    alias emacs=${emacs}
+  fi
+}
