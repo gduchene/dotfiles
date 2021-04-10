@@ -73,7 +73,9 @@
   (require 'dired-x))
 
 (use-package exec-path-from-shell
-  :config (exec-path-from-shell-initialize)
+  :config
+  (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
+  (exec-path-from-shell-initialize)
   :ensure t)
 
 (use-package evil-magit :ensure t)
