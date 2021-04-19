@@ -3,6 +3,7 @@
   co  = checkout
   di  = diff
   dis = diff --staged
+  fa  = fetch --all --prune
   gi  = grep -i
   st  = status
 
