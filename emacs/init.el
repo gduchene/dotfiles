@@ -37,7 +37,6 @@
 (column-number-mode 1)
 (display-time-mode 1)
 (electric-indent-mode -1)
-(evil-mode 1)
 (global-auto-revert-mode 1)
 (menu-bar-mode -1)
 (show-paren-mode 1)
@@ -78,7 +77,15 @@
   (exec-path-from-shell-initialize)
   :ensure t)
 
-(use-package evil-magit :ensure t)
+(use-package evil
+  :init (setq evil-want-keybinding nil)
+  :config (evil-mode)
+  :ensure t)
+
+(use-package evil-collection
+  :config (evil-collection-init 'magit)
+  :after evil
+  :ensure t)
 
 (use-package go-mode
   :init
@@ -123,7 +130,6 @@
 
 (use-package magit
   :init (setq git-commit-summary-max-length 50)
-  :config (require 'evil-magit)
   :bind (("C-c k" . magit-status))
   :ensure t)
 
