@@ -55,7 +55,7 @@
   (blink-cursor-mode -1)
   (scroll-bar-mode -1))
 
-(use-package bazel-mode
+(use-package bazel
   :config (setq bazel-mode-buildifier-before-save t)
   :ensure t)
 
