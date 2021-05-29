@@ -114,8 +114,10 @@
 
 (use-package ibuffer
   :init
+  (defvar awhk-ibuffer-filters "default" "Default Ibuffer filter groups.")
   (add-hook 'ibuffer-mode-hook
-            (lambda () (ibuffer-switch-to-saved-filter-groups "default")))
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups awhk-ibuffer-filters)))
   :config
   (setq ibuffer-saved-filter-groups
         '(("default"
