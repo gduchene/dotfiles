@@ -83,8 +83,10 @@
   :ensure t)
 
 (use-package evil-collection
-  :config (evil-collection-init 'magit)
-  :after evil
+  :config
+  (evil-collection-init '(dired ibuffer magit))
+  (diminish 'evil-collection-unimpaired-mode)
+  :after (evil diminish)
   :ensure t)
 
 (use-package go-mode
