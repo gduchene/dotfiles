@@ -71,6 +71,14 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (require 'dired-x))
 
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-one 'no-confirm 'no-load)
+  (load-theme 'doom-one-light 'no-confirm 'no-load)
+  :ensure t)
+
 (use-package exec-path-from-shell
   :config
   (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
@@ -137,6 +145,8 @@
 
 (use-package org :init (setq org-startup-folded "showall"))
 
+(use-package sh-script :config (setq sh-basic-offset 2))
+
 (use-package term
   :bind
   (("C-c t" . (lambda ()
@@ -147,11 +157,26 @@
                 (switch-to-buffer "*terminal*")
                 (evil-emacs-state)))))
 
-(use-package sh-script :config (setq sh-basic-offset 2))
+(use-package timer-list :config (put 'list-timers 'disabled nil))
 
 (defun center-frame (&optional frame)
     (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
+
+(defun maybe-switch-theme (light-theme dark-theme enable-dark-theme-p)
+  "Switch between themes.
+
+If ENABLE-DARK-THEME-P returns a non-nil value, then DARK-THEME
+is enabled and LIGHT-THEME is disabled, unless DARK-THEME is
+already enabled. The opposite happens if ENABLE-DARK-THEME-P
+returns nil."
+  (if (funcall enable-dark-theme-p)
+      (unless (member dark-theme custom-enabled-themes)
+        (enable-theme dark-theme)
+        (disable-theme light-theme))
+    (unless (member light-theme custom-enabled-themes)
+      (enable-theme light-theme)
+      (disable-theme dark-theme))))
 
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
