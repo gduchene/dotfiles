@@ -75,6 +75,9 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
+  (add-to-list 'doom-themes-base-faces
+               '(nobreak-space :inherit 'default :underline builtin)
+               t)
   (load-theme 'doom-one 'no-confirm 'no-load)
   (load-theme 'doom-one-light 'no-confirm 'no-load)
   :ensure t)
