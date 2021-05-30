@@ -165,8 +165,17 @@
 (use-package timer-list :config (put 'list-timers 'disabled nil))
 
 (defun center-frame (&optional frame)
-    (interactive)
+  "Center FRAME."
+  (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
+
+(defun focus-frame (&optional frame)
+  "Focus FRAME."
+  (interactive)
+  (delete-other-windows)
+  (modify-frame-parameters frame '((fullscreen . fullheight)
+                                   (left . 0.5)
+                                   (width . 100))))
 
 (defun maybe-switch-theme (light-theme dark-theme enable-dark-theme-p)
   "Switch between themes.
@@ -185,6 +194,7 @@ returns nil."
 
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "<C-M-tab>") 'other-frame)
+(global-set-key (kbd "C-c l") 'focus-frame)
 (global-set-key (kbd "C-c s") 'toggle-frame-maximized)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x 0")
