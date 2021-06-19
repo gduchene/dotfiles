@@ -55,7 +55,7 @@
   (scroll-bar-mode -1))
 
 (use-package bazel
-  :config (setq bazel-mode-buildifier-before-save t)
+  :config (setq bazel-buildifier-before-save t)
   :ensure t)
 
 (use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
@@ -98,6 +98,14 @@
   (evil-collection-init '(dired ibuffer magit))
   (diminish 'evil-collection-unimpaired-mode)
   :after (evil diminish)
+  :ensure t)
+
+(use-package flycheck
+  :config
+  (setq flycheck-global-modes '(c++-mode go-mode))
+  (global-flycheck-mode)
+  :hook (c++-mode . (lambda () (setq flycheck-clang-language-standard "c++17")))
+  :after go-mode
   :ensure t)
 
 (use-package go-mode
