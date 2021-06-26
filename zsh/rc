@@ -21,7 +21,7 @@ zstyle ':completion:*' users root ${USER}
 
 HISTFILE=${XDG_CACHE_HOME}/zsh/history
 HISTSIZE=65535
-PS1="%n@%m:%~ %# "
+PS1='%(?..%F{#ff0000}%?%f )%n@%m:%~ %# '
 SAVEHIST=${HISTSIZE}
 WORDCHARS=${WORDCHARS/\//}
 
