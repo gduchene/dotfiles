@@ -1,4 +1,4 @@
 # -*- mode: shell-script -*-
 
 alias df='df -h'
-alias ls='ls --color'
+alias ls='ls --color --group-directories-first'
