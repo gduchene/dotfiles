@@ -3,10 +3,12 @@
 (when (executable-find "gls")
   (setq insert-directory-program "gls"))
 
-(defun is-macos-dark ()
+(defun macos-dark-p ()
   (interactive)
   (string= (shell-command-to-string "defaults read -g AppleInterfaceStyle")
            "Dark\n"))
 
-(run-at-time nil (* 15 60) 'maybe-switch-theme 'doom-one-light 'doom-one
-             'is-macos-dark)
+(add-hook 'after-init-hook
+          (lambda ()
+            (run-at-time nil (* 15 60) 'maybe-switch-theme awhk-day-theme
+                         awhk-night-theme 'macos-dark-p)))

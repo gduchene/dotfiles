@@ -55,6 +55,10 @@
   (blink-cursor-mode -1)
   (scroll-bar-mode -1))
 
+(defvar awhk-day-theme nil "Theme to use during the day.")
+
+(defvar awhk-night-theme nil "Theme to use during the night.")
+
 (use-package bazel
   :config (setq bazel-buildifier-before-save t)
   :ensure t)
@@ -74,13 +78,15 @@
 
 (use-package doom-themes
   :config
-  (setq doom-themes-enable-bold t
+  (setq awhk-day-theme 'doom-one-light
+        awhk-night-theme 'doom-one
+        doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (add-to-list 'doom-themes-base-faces
                '(nobreak-space :inherit 'default :underline builtin)
                t)
-  (load-theme 'doom-one 'no-confirm 'no-load)
-  (load-theme 'doom-one-light 'no-confirm 'no-load)
+  (load-theme 'doom-one 'no-confirm 'no-enable)
+  (load-theme 'doom-one-light 'no-confirm 'no-enable)
   :ensure t)
 
 (use-package exec-path-from-shell
