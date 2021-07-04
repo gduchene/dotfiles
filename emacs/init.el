@@ -42,6 +42,7 @@
 (show-paren-mode 1)
 (tool-bar-mode -1)
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.socket\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'default-frame-alist '(height . 40))
