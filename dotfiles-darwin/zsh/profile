@@ -3,7 +3,7 @@
 () {
   local dir
   for dir (
-      /usr/local/opt/{gnu-tar,grep}/libexec/gnubin
+      /usr/local/opt/{coreutils,gnu-tar,grep}/libexec/gnubin
       ~/Applications/Emacs.app/Contents/MacOS/bin
   ); do
     [[ -d ${dir} ]] && path=(${dir} ${path})

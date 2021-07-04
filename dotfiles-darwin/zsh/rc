@@ -14,3 +14,8 @@ alias python=python3
     alias emacs=${emacs}
   fi
 }
+
+if (( ${path[(I)/usr/local/opt/coreutils/libexec/gnubin]} )); then
+  alias ls='ls --color --group-directories-first'
+  alias lsh='ls -Shrs'
+fi
