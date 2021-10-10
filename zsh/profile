@@ -1,12 +1,12 @@
 # -*- mode: shell-script -*-
 
+source_if_exists dotfiles-${UNAME}/zsh/profile
+source_if_exists dotfiles-${DOMAIN}/zsh/profile
+source_if_exists dotfiles-${HOST}/zsh/profile
+
 () {
   local dir
   for dir in ~/{.local/bin,bin} ${GOPATH:-~/go}/bin; do
     [[ -d ${dir} ]] && path=(${dir} ${path})
   done
 }
-
-source_if_exists dotfiles-${UNAME}/zsh/profile
-source_if_exists dotfiles-${DOMAIN}/zsh/profile
-source_if_exists dotfiles-${HOST}/zsh/profile
