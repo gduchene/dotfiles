@@ -159,7 +159,9 @@
   :ensure t)
 
 (use-package magit
-  :init (setq git-commit-summary-max-length 50)
+  :init
+  (setq git-commit-summary-max-length 50)
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   :bind (("C-c k" . magit-status))
   :ensure t)
 
