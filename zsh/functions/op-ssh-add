@@ -54,5 +54,5 @@ zpty -w ssh $(trap -
                 | op get item                               \
                      --fields fingerprint,password          \
                      --session ${session} -                 \
-                | jq -jr "select(.fingerprint == \"${fp}\") | .password")
+                | jq -j "select(.fingerprint == \"${fp}\") | .password")
 zpty -r ssh
