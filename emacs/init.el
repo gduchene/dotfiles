@@ -89,12 +89,6 @@
   (load-theme 'doom-one-light 'no-confirm 'no-enable)
   :ensure t)
 
-(use-package exec-path-from-shell
-  :config
-  (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
-  (exec-path-from-shell-initialize)
-  :ensure t)
-
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode)
