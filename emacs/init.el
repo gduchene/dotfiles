@@ -51,6 +51,7 @@
 
 (use-package bazel
   :config (setq bazel-buildifier-before-save t)
+  :commands bazel-mode
   :ensure t)
 
 (use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
@@ -108,6 +109,7 @@
             (lambda ()
               (setq tab-width 2)
               (add-hook 'before-save-hook 'gofmt-before-save nil t)))
+  :commands go-mode
   :ensure t)
 
 (use-package google-c-style
@@ -133,7 +135,8 @@
            ("Shells" (mode . term-mode))
            ("Manuals" (or (mode . Info-mode)
                           (mode . Man-mode)))))
-        ibuffer-show-empty-filter-groups nil))
+        ibuffer-show-empty-filter-groups nil)
+  :commands ibuffer)
 
 (use-package ivy
   :config (ivy-mode 1)
@@ -149,9 +152,9 @@
   :bind (("C-c k" . magit-status))
   :ensure t)
 
-(use-package org :init (setq org-startup-folded "showall"))
+(use-package org :init (setq org-startup-folded "showall") :commands org-mode)
 
-(use-package sh-script :config (setq sh-basic-offset 2))
+(use-package sh-script :config (setq sh-basic-offset 2) :commands sh-mode)
 
 (use-package term
   :bind
@@ -223,3 +226,11 @@ returns nil."
 (source-if-exists "dotfiles-${UNAME}/emacs/init.el")
 (source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
 (source-if-exists "dotfiles-${HOST}/emacs/init.el")
+
+(defun my/display-startup-time ()
+  "Displays a message saying how long it took Emacs to load."
+  (message "Emacs loaded in %.2f seconds with %d garbage collections done."
+           (float-time (time-subtract after-init-time before-init-time))
+           gcs-done))
+
+(add-hook 'after-init-hook #'my/display-startup-time)
