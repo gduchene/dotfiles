@@ -76,8 +76,6 @@
   (add-to-list 'doom-themes-base-faces
                '(nobreak-space :inherit 'default :underline builtin)
                t)
-  (load-theme 'doom-one 'no-confirm 'no-enable)
-  (load-theme 'doom-one-light 'no-confirm 'no-enable)
   :ensure t)
 
 (use-package evil
@@ -190,10 +188,10 @@ already enabled. The opposite happens if ENABLE-DARK-THEME-P
 returns nil."
   (if (funcall enable-dark-theme-p)
       (unless (member dark-theme custom-enabled-themes)
-        (enable-theme dark-theme)
+        (load-theme dark-theme :no-confirm)
         (disable-theme light-theme))
     (unless (member light-theme custom-enabled-themes)
-      (enable-theme light-theme)
+      (load-theme light-theme :no-confirm)
       (disable-theme dark-theme))))
 
 (global-set-key (kbd "<C-tab>") 'other-window)
