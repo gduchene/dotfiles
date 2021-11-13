@@ -34,26 +34,16 @@
 
 (auto-save-mode -1)
 (auto-save-visited-mode 1)
+(blink-cursor-mode -1)
 (column-number-mode 1)
 (display-time-mode 1)
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
-(menu-bar-mode -1)
-(show-paren-mode 1)
-(tool-bar-mode -1)
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.socket\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(left . 0.5))
-(add-to-list 'default-frame-alist '(top . 0.5))
-(add-to-list 'default-frame-alist '(width . 160))
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
-
-(when (display-graphic-p)
-  (blink-cursor-mode -1)
-  (scroll-bar-mode -1))
 
 (defvar awhk-day-theme nil "Theme to use during the day.")
 
