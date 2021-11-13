@@ -138,7 +138,9 @@
 
 (use-package ivy
   :config (ivy-mode 1)
-  :bind (:map ivy-minibuffer-map ("C-w" . ivy-backward-delete-char))
+  :bind (:map ivy-minibuffer-map
+              ("C-h" . ivy-backward-delete-char)
+              ("C-w" . ivy-backward-kill-word))
   :demand t
   :diminish
   :ensure t)
