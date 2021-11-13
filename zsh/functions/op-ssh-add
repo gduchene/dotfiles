@@ -12,7 +12,7 @@
 # You must also have the 1Password CLI tool (op) and jq installed.
 
 if [[ ${@[1]} =~ '-[DdKLlTXx]' ]]; then
-  $(which -p ssh-add) $@
+  command ssh-add $@
   return $?
 fi
 
@@ -29,7 +29,7 @@ for prv (${@[-1]} ~/.ssh/id_{ecdsa,ed25519}{_sk,}); do
 done
 
 if [[ -z ${pub} ]]; then
-  $(which -p ssh-add) $@
+  command ssh-add $@
   return $?
 fi
 
@@ -39,7 +39,7 @@ if [[ -z ${session} ]]; then
 fi
 
 zmodload zsh/zpty
-zpty ssh $(which -p ssh-add) ${args}
+zpty ssh command ssh-add ${args}
 
 _cleanup() {
   zpty -d ssh
