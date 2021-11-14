@@ -39,9 +39,6 @@
 (display-time-mode 1)
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
-(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.socket\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.timer\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
@@ -55,6 +52,8 @@
   :ensure t)
 
 (use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
+
+(use-package conf-mode :mode ("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
 
 (use-package clang-format
   :init (setq clang-format-style "google")
