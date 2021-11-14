@@ -39,8 +39,6 @@
 (display-time-mode 1)
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
-(add-to-list 'auto-mode-alist '("/PKGBUILD\\'" . shell-script-mode))
-(add-to-list 'magic-mode-alist '("#compdef .+" . sh-mode))
 
 (defvar awhk-day-theme nil "Theme to use during the day.")
 
@@ -153,7 +151,10 @@
 
 (use-package org :init (setq org-startup-folded "showall") :commands org-mode)
 
-(use-package sh-script :config (setq sh-basic-offset 2) :commands sh-mode)
+(use-package sh-script
+  :config (setq sh-basic-offset 2)
+  :mode ("/PKGBUILD\\'" . sh-mode)
+  :magic ("#compdef .+" . sh-mode))
 
 (use-package term
   :bind
