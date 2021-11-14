@@ -223,9 +223,9 @@ returns nil."
             (menu-bar-mode -1)
             (scroll-bar-mode -1)))
 
-(source-if-exists "dotfiles-${UNAME}/emacs/init.el")
-(source-if-exists "dotfiles-${DOMAIN}/emacs/init.el")
-(source-if-exists "dotfiles-${HOST}/emacs/init.el")
+(source-if-exists "dotfiles-${UNAME}/emacs/init")
+(source-if-exists "dotfiles-${DOMAIN}/emacs/init")
+(source-if-exists "dotfiles-${HOST}/emacs/init")
 
 (defun my/display-startup-time ()
   "Displays a message saying how long it took Emacs to load."
