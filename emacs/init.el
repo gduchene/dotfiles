@@ -1,19 +1,19 @@
-(let ((cache-dir (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/"))
-      (data-dir (substitute-in-file-name "${XDG_DATA_HOME}/emacs/")))
-  (setq abbrev-file-name (concat cache-dir "abbrev-def")
-        auto-save-list-file-prefix (concat cache-dir "auto-save/")
-        backup-directory-alist `(("." . ,(concat cache-dir "backups")))
-        custom-file (concat cache-dir "custom.el")
-        package-user-dir (concat data-dir "elpa")
-        transient-history-file (concat cache-dir "transient/history.el")))
+(defvar my/cache-dir (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/")
+  "Directory for cache data.")
 
-(defun source-if-exists (filename)
-  (load (concat (file-truename user-emacs-directory) "../"
-                (substitute-in-file-name filename)) t))
+(defvar my/data-dir (substitute-in-file-name "${XDG_DATA_HOME}/emacs/")
+  "Directory for static data.")
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-user-dir (concat my/data-dir "elpa"))
+(push '("melpa" . "https://melpa.org/packages/") package-archives)
 (package-initialize)
+
+(setq abbrev-file-name (concat my/cache-dir "abbrev-def")
+      auto-save-list-file-prefix (concat my/cache-dir "auto-save/")
+      backup-directory-alist `(("." . ,(concat my/cache-dir "backups")))
+      custom-file (concat my/cache-dir "custom.el")
+      transient-history-file (concat my/cache-dir "transient/history.el"))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
