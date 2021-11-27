@@ -1,0 +1,11 @@
+{
+  "^J" = (insertLineBreak:);
+  "^j" = (insertNewline:);
+  "^w" = (deleteWordBackward:);
+  "~B" = (moveWordBackwardAndModifySelection:);
+  "~F" = (moveWordForwardAndModifySelection:);
+  "~b" = (moveWordBackward:);
+  "~d" = (deleteWordForward:);
+  "~f" = (moveWordForward:);
+  "~h" = (selectParagraph:);
+}
