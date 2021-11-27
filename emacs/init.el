@@ -19,6 +19,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-defer t)
 
 (setq-default indent-tabs-mode nil
               fill-column 72)
@@ -46,7 +47,6 @@
 
 (use-package bazel
   :config (setq bazel-buildifier-before-save t)
-  :commands bazel-mode
   :ensure t)
 
 (use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
@@ -73,19 +73,19 @@
   (add-to-list 'doom-themes-base-faces
                '(nobreak-space :inherit 'default :underline builtin)
                t)
-  :ensure t)
+  :demand :ensure)
 
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode)
-  :ensure t)
+  :demand :ensure)
 
 (use-package evil-collection
   :config
   (evil-collection-init '(dired ibuffer magit))
   (diminish 'evil-collection-unimpaired-mode)
   :after (evil diminish)
-  :ensure t)
+  :demand :ensure)
 
 (use-package flycheck
   :config
@@ -104,7 +104,6 @@
             (lambda ()
               (setq tab-width 2)
               (add-hook 'before-save-hook 'gofmt-before-save nil t)))
-  :commands go-mode
   :ensure t)
 
 (use-package google-c-style
@@ -130,8 +129,7 @@
            ("Shells" (mode . term-mode))
            ("Manuals" (or (mode . Info-mode)
                           (mode . Man-mode)))))
-        ibuffer-show-empty-filter-groups nil)
-  :commands ibuffer)
+        ibuffer-show-empty-filter-groups nil))
 
 (use-package ivy
   :config (ivy-mode 1)
@@ -149,7 +147,7 @@
   :bind (("C-c k" . magit-status))
   :ensure t)
 
-(use-package org :init (setq org-startup-folded "showall") :commands org-mode)
+(use-package org :init (setq org-startup-folded "showall"))
 
 (use-package sh-script
   :config (setq sh-basic-offset 2)
