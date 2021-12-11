@@ -9,7 +9,7 @@
 
 ;; Theme Management
 
-(when window-system
+(when (or window-system (daemonp))
   (my/with-add-hook 'after-init-hook
     (run-at-time nil (* 15 60) #'my/maybe-switch-theme my/day-theme
                  my/night-theme #'my/macos-dark-p)))

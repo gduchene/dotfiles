@@ -97,7 +97,7 @@
 
 (defvar my/night-theme nil "Theme to use during the night.")
 
-(when window-system
+(when (or window-system (daemonp))
   (require 'doom-themes)
 
   (setq my/day-theme 'doom-one-light
