@@ -1,37 +1,51 @@
-(defvar my/cache-dir (substitute-in-file-name "${XDG_CACHE_HOME}/emacs/")
-  "Directory for cache data.")
+;; Path Configuration
 
-(defvar my/data-dir (substitute-in-file-name "${XDG_DATA_HOME}/emacs/")
-  "Directory for static data.")
+(setq abbrev-file-name (my/cache-file-name "abbrev-def")
+      auto-save-list-file-prefix (my/cache-file-name "auto-save/")
+      backup-directory-alist `(("." . ,(my/cache-file-name "backups")))
+      custom-file (my/cache-file-name "custom.el")
+      transient-history-file (my/cache-file-name "transient/history.el"))
 
-(require 'package)
-(setq package-user-dir (concat my/data-dir "elpa"))
-(push '("melpa" . "https://melpa.org/packages/") package-archives)
+
+;; Package Management
+
+(setq package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
+                         ("MELPA"    . "https://melpa.org/packages/"))
+      package-user-dir (my/data-file-name "elpa"))
+
+(my/load-file "emacs/package-list")
+(my/load-file-variations "emacs/package-list")
+
+(unless (file-directory-p package-user-dir)
+  (package-refresh-contents)
+  (package-install-selected-packages))
+
 (package-initialize)
 
-(setq abbrev-file-name (concat my/cache-dir "abbrev-def")
-      auto-save-list-file-prefix (concat my/cache-dir "auto-save/")
-      backup-directory-alist `(("." . ,(concat my/cache-dir "backups")))
-      custom-file (concat my/cache-dir "custom.el")
-      transient-history-file (concat my/cache-dir "transient/history.el"))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-(setq use-package-always-defer t)
+;; General Configuration
 
 (setq-default indent-tabs-mode nil
               fill-column 72)
+
 (setq backup-by-copying t
       display-time-24hr-format t
       inhibit-startup-screen t
       recenter-positions '(3 middle top bottom)
       require-final-newline t
+      ring-bell-function 'ignore
       sentence-end-double-space nil
       show-paren-delay 0
       uniquify-buffer-name-style 'post-forward-angle-brackets
       vc-follow-symlinks nil)
+
+(put 'list-timers 'disabled nil)
+
+(add-hook 'after-init-hook #'my/display-startup-time)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(my/with-add-hook 'server-switch-hook
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1))
 
 (auto-save-mode -1)
 (auto-save-visited-mode 1)
@@ -40,195 +54,143 @@
 (display-time-mode 1)
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
+(show-paren-mode 1)
 
-(defvar awhk-day-theme nil "Theme to use during the day.")
 
-(defvar awhk-night-theme nil "Theme to use during the night.")
+;; Buffer Management
 
-(use-package bazel
-  :config (setq bazel-buildifier-before-save t)
-  :ensure t)
+(setq ibuffer-saved-filter-groups
+      '(("default"
+         ("Emacs" (or (mode . completion-list-mode)
+                      (mode . debugger-mode)
+                      (mode . help-mode)
+                      (mode . messages-buffer-mode)
+                      (name . "^\\*scratch\\*$")))
+         ("Magit" (name . "^magit"))
+         ("Dired" (mode . dired-mode))
+         ("Shells" (mode . term-mode))
+         ("Manuals" (or (mode . Info-mode)
+                        (mode . Man-mode)))))
+      ibuffer-show-empty-filter-groups nil)
 
-(use-package cc-mode :bind (:map c++-mode-map ("C-c f" . clang-format)))
+(my/with-add-hook 'ibuffer-mode-hook
+  (ibuffer-switch-to-saved-filter-groups "default"))
 
-(use-package conf-mode :mode ("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
+(global-set-key (kbd "C-x C-b") #'ibuffer)
 
-(use-package clang-format
-  :init (setq clang-format-style "google")
-  :ensure t)
 
-(use-package diminish :ensure t)
+;; Ivy
 
-(use-package dired
-  :config
-  (put 'dired-find-alternate-file 'disabled nil)
-  (require 'dired-x))
+(ivy-mode 1)
+(diminish 'ivy-mode)
 
-(use-package doom-themes
-  :config
-  (setq awhk-day-theme 'doom-one-light
-        awhk-night-theme 'doom-one
+(counsel-mode 1)
+(diminish 'counsel-mode)
+
+(global-set-key (kbd "C-c s") #'swiper)
+(global-set-key (kbd "C-c x") #'swiper-all)
+
+
+;; Theme Management
+
+(defvar my/day-theme nil "Theme to use during the day.")
+
+(defvar my/night-theme nil "Theme to use during the night.")
+
+(when window-system
+  (require 'doom-themes)
+
+  (setq my/day-theme 'doom-one-light
+        my/night-theme 'doom-one
         doom-themes-enable-bold t
         doom-themes-enable-italic t)
+
   (add-to-list 'doom-themes-base-faces
                '(nobreak-space :inherit 'default :underline builtin)
-               t)
-  :demand :ensure)
+               :append))
 
-(use-package evil
-  :init (setq evil-want-keybinding nil)
-  :config (evil-mode)
-  :demand :ensure)
 
-(use-package evil-collection
-  :config
-  (evil-collection-init '(dired ibuffer magit))
-  (diminish 'evil-collection-unimpaired-mode)
-  :after (evil diminish)
-  :demand :ensure)
+;; “Window” Management
 
-(use-package flycheck
-  :config
-  (setq flycheck-global-modes '(c++-mode go-mode))
-  (global-flycheck-mode)
-  :hook (c++-mode . (lambda () (setq flycheck-clang-language-standard "c++17")))
-  :after go-mode
-  :ensure t)
+(global-set-key (kbd "<C-tab>") #'other-window)
+(global-set-key (kbd "<C-M-tab>") #'other-frame)
+(global-set-key (kbd "C-c l") #'my/focus-frame)
+(global-set-key (kbd "C-c f") #'toggle-frame-maximized)
 
-(use-package go-mode
-  :init
-  (when (executable-find "goimports")
-    (setq gofmt-args '("-local" "go.awhk.org")
-          gofmt-command "goimports"))
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (setq tab-width 2)
-              (add-hook 'before-save-hook 'gofmt-before-save nil t)))
-  :ensure t)
+(dolist (fn '(delete-window split-window-horizontally split-window-vertically))
+  (advice-add fn :after #'(lambda (&rest _args) (balance-windows))))
 
-(use-package google-c-style
-  :hook (c++-mode . google-set-c-style)
-  :ensure t)
 
-(use-package ibuffer
-  :init
-  (defvar awhk-ibuffer-filters "default" "Default Ibuffer filter group.")
-  (add-hook 'ibuffer-mode-hook
-            (lambda ()
-              (ibuffer-switch-to-saved-filter-groups awhk-ibuffer-filters)))
-  :config
-  (setq ibuffer-saved-filter-groups
-        '(("default"
-           ("Emacs" (or (mode . completion-list-mode)
-                        (mode . debugger-mode)
-                        (mode . help-mode)
-                        (mode . messages-buffer-mode)
-                        (name . "^\\*scratch\\*$")))
-           ("Magit" (name . "^magit"))
-           ("Dired" (mode . dired-mode))
-           ("Shells" (mode . term-mode))
-           ("Manuals" (or (mode . Info-mode)
-                          (mode . Man-mode)))))
-        ibuffer-show-empty-filter-groups nil))
+;; Bazel
 
-(use-package ivy
-  :config (ivy-mode 1)
-  :bind (:map ivy-minibuffer-map
-              ("C-h" . ivy-backward-delete-char)
-              ("C-w" . ivy-backward-kill-word))
-  :demand t
-  :diminish
-  :ensure t)
+(setq bazel-buildifier-before-save t)
 
-(use-package magit
-  :init
-  (setq git-commit-summary-max-length 50)
-  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
-  :bind (("C-c k" . magit-status))
-  :ensure t)
 
-(use-package org :init (setq org-startup-folded "showall"))
+;; C++
 
-(use-package sh-script
-  :config (setq sh-basic-offset 2)
-  :mode ("/PKGBUILD\\'" . sh-mode)
-  :magic ("#compdef .+" . sh-mode))
+(setq clang-format-style "google")
 
-(use-package term
-  :bind
-  (("C-c t" . (lambda ()
-                (interactive)
-                (set-buffer (make-term "terminal" shell-file-name))
-                (term-mode)
-                (term-char-mode)
-                (switch-to-buffer "*terminal*")
-                (evil-emacs-state)))))
+(my/with-add-hook 'c-initialization-hook
+  (local-set-key (kbd "C-c f") #'clang-format))
+(add-hook 'c-mode-common-hook #'google-set-c-style)
+(add-hook 'c++-mode-hook #'flycheck-mode)
 
-(use-package timer-list :config (put 'list-timers 'disabled nil))
 
-(defun center-frame (&optional frame)
-  "Center FRAME."
-  (interactive)
-  (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
+;; Dired
 
-(defun focus-frame (&optional frame)
-  "Focus FRAME."
-  (interactive)
-  (delete-other-windows)
-  (modify-frame-parameters frame '((fullscreen . fullheight)
-                                   (left . 0.5)
-                                   (width . 100))))
+(put 'dired-find-alternate-file 'disabled nil)
 
-(defun maybe-switch-theme (light-theme dark-theme enable-dark-theme-p)
-  "Switch between themes.
+(my/with-add-hook 'dired-mode-hook
+  (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link)))
 
-If ENABLE-DARK-THEME-P returns a non-nil value, then DARK-THEME
-is enabled and LIGHT-THEME is disabled, unless DARK-THEME is
-already enabled. The opposite happens if ENABLE-DARK-THEME-P
-returns nil."
-  (if (funcall enable-dark-theme-p)
-      (unless (member dark-theme custom-enabled-themes)
-        (load-theme dark-theme :no-confirm)
-        (disable-theme light-theme))
-    (unless (member light-theme custom-enabled-themes)
-      (load-theme light-theme :no-confirm)
-      (disable-theme dark-theme))))
+(define-key dired-mode-map [mouse-1] #'dired-find-file)
 
-(global-set-key (kbd "<C-tab>") 'other-window)
-(global-set-key (kbd "<C-M-tab>") 'other-frame)
-(global-set-key (kbd "C-c l") 'focus-frame)
-(global-set-key (kbd "C-c s") 'toggle-frame-maximized)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x 0")
-                (lambda ()
-                  (interactive)
-                  (delete-window)
-                  (balance-windows)))
-(global-set-key (kbd "C-x 2")
-                (lambda ()
-                  (interactive)
-                  (split-window-vertically)
-                  (balance-windows)))
-(global-set-key (kbd "C-x 3")
-                (lambda ()
-                  (interactive)
-                  (split-window-horizontally)
-                  (balance-windows)))
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'server-switch-hook
-          (lambda ()
-            (menu-bar-mode -1)
-            (scroll-bar-mode -1)))
+;; Go
 
-(my/source-if-exists "dotfiles-${UNAME}/emacs/init")
-(my/source-if-exists "dotfiles-${DOMAIN}/emacs/init")
-(my/source-if-exists "dotfiles-${HOST}/emacs/init")
+(when (executable-find "goimports")
+  (setq gofmt-args '("-local" "go.awhk.org")
+        gofmt-command "goimports"))
 
-(defun my/display-startup-time ()
-  "Displays a message saying how long it took Emacs to load."
-  (message "Emacs loaded in %.2f seconds with %d garbage collections done."
-           (float-time (time-subtract after-init-time before-init-time))
-           gcs-done))
+(my/with-add-hook 'go-mode-hook
+  (setq tab-width 2)
+  (add-hook 'before-save-hook #'gofmt-before-save nil :local)
+  (flycheck-mode))
 
-(add-hook 'after-init-hook #'my/display-startup-time)
+
+;; Flycheck
+
+(setq flycheck-clang-language-standard "c++17")
+
+
+;; Git
+
+(setq git-commit-summary-max-length 50)
+
+(add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
+
+(global-set-key (kbd "C-c k") #'magit-status)
+
+
+;; Org
+
+(setq org-startup-folded "showall")
+
+
+;; Shell Scripts
+
+(setq sh-basic-offset 2)
+
+(push '("/PKGBUILD\\'" . sh-mode) auto-mode-alist)
+(push '("#compdef .+" . sh-mode) magic-mode-alist)
+
+
+;; systemd
+
+(dolist (regexp '("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
+  (push `(,regexp . conf-mode) auto-mode-alist))
+
+
+;; Further Customization
+
+(my/load-file-variations "emacs/init")
