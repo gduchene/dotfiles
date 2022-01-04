@@ -2,6 +2,7 @@
                                   clang-format
                                   counsel
                                   diminish
+                                  dockerfile-mode
                                   doom-themes
                                   evil
                                   evil-collection
@@ -10,7 +11,8 @@
                                   google-c-style
                                   ivy
                                   magit
+                                  markdown-mode
+                                  protobuf-mode
                                   swiper
                                   tuareg
-                                  protobuf-mode
                                   yaml-mode))
