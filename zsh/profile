@@ -7,6 +7,12 @@
   done
 }
 
+# Make C-q and C-s work in zsh.
+#
+# See https://en.wikipedia.org/wiki/Software_flow_control for gory
+# details.
+stty -ixon
+
 source_if_exists dotfiles-${UNAME}/zsh/profile
 source_if_exists dotfiles-${DOMAIN}/zsh/profile
 source_if_exists dotfiles-${HOST}/zsh/profile
