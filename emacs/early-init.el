@@ -22,8 +22,9 @@ directories."
       gc-cons-threshold (* 50 1024 1024))
 
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+;; Those functions may not exist if the GUI is not compiled in.
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 
 ;; Further Early Customization
