@@ -4,3 +4,4 @@ set -g base-index 1
 set -g escape-time 0
 set -g mouse on
 set -g renumber-windows on
+set -g status-right "%R %Z"

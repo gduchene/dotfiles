@@ -51,7 +51,7 @@
 (auto-save-visited-mode 1)
 (blink-cursor-mode -1)
 (column-number-mode 1)
-(display-time-mode 1)
+(display-time-mode (if (getenv "TMUX") -1 1))
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
 (show-paren-mode 1)
