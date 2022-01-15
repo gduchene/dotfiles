@@ -9,6 +9,17 @@
   (expand-file-name name (concat (xdg-data-home) "/emacs")))
 
 
+;; Search Helpers
+
+(defun my/isearch-region (&rest _args)
+  "Pull the contents of the region into the search string if it
+is active."
+  (when (use-region-p)
+    (deactivate-mark)
+    (isearch-yank-string (buffer-substring-no-properties
+                          (region-beginning) (region-end)))))
+
+
 ;; Theme Functions
 
 (defun my/macos-dark-p ()

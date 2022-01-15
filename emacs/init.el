@@ -81,7 +81,7 @@
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 
-;; Ivy
+;; Search and Completion Management
 
 (ivy-mode 1)
 (diminish 'ivy-mode)
@@ -91,6 +91,9 @@
 
 (global-set-key (kbd "C-c s") #'swiper)
 (global-set-key (kbd "C-c x") #'swiper-all)
+
+(dolist (fn '(isearch-forward isearch-backward))
+  (advice-add fn :after #'my/isearch-region))
 
 
 ;; Theme Management
