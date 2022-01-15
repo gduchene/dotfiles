@@ -4,8 +4,6 @@
                                   diminish
                                   dockerfile-mode
                                   doom-themes
-                                  evil
-                                  evil-collection
                                   flycheck
                                   go-mode
                                   google-c-style
