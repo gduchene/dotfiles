@@ -9,7 +9,6 @@ done
 # make it work in Emacs only. Yep, it’s pretty bad.
 local plist=~/Applications/Emacs.app/Contents/Info.plist
 if [[ -f ${plist} ]]; then
-  plutil -replace LSEnvironment -dictionary ${plist}
-  plutil -insert LSEnvironment.PATH -string "${PATH}" ${plist}
+  plutil -replace LSEnvironment -json '{"PATH": "'${PATH}'"}' ${plist}
   /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f ${plist:h:h}
 fi
