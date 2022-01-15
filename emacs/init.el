@@ -56,6 +56,8 @@
 (global-auto-revert-mode 1)
 (show-paren-mode 1)
 
+(global-set-key (kbd "C-c q") #'electric-quote-local-mode)
+
 
 ;; Buffer Management
 
@@ -167,6 +169,7 @@
 
 (setq git-commit-summary-max-length 50)
 
+(add-hook 'git-commit-setup-hook #'electric-quote-local-mode)
 (add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
 
 (global-set-key (kbd "C-c k") #'magit-status)
