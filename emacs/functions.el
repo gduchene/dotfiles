@@ -19,6 +19,17 @@ is active."
     (isearch-yank-string (buffer-substring-no-properties
                           (region-beginning) (region-end)))))
 
+(defun my/swiper (&optional swiper-all)
+  "Call ‘swiper’ (‘swiper-all’ when prefixed) with the contents
+of the region if it is active."
+  (interactive "P")
+  (if (use-region-p)
+      (let ((initial-input (buffer-substring-no-properties
+                            (region-beginning) (region-end))))
+        (deactivate-mark)
+        (if swiper-all (swiper-all initial-input) (swiper initial-input)))
+    (if swiper-all (swiper-all) (swiper))))
+
 
 ;; Theme Functions
 

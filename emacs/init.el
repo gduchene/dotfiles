@@ -89,8 +89,7 @@
 (counsel-mode 1)
 (diminish 'counsel-mode)
 
-(global-set-key (kbd "C-c s") #'swiper)
-(global-set-key (kbd "C-c x") #'swiper-all)
+(global-set-key (kbd "C-c s") #'my/swiper)
 
 (dolist (fn '(isearch-forward isearch-backward))
   (advice-add fn :after #'my/isearch-region))
