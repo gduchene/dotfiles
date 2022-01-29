@@ -7,11 +7,13 @@
   done
 }
 
-# Make C-q and C-s work in zsh.
-#
-# See https://en.wikipedia.org/wiki/Software_flow_control for gory
-# details.
-stty -ixon
+if [[ -n ${TERM} ]]; then
+  # Make C-q and C-s work in zsh.
+  #
+  # See https://en.wikipedia.org/wiki/Software_flow_control for gory
+  # details.
+  stty -ixon
+fi
 
 source_if_exists dotfiles-${UNAME}/zsh/profile
 source_if_exists dotfiles-${DOMAIN}/zsh/profile
