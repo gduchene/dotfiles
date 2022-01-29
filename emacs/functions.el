@@ -62,6 +62,11 @@ returns nil."
   (interactive)
   (modify-frame-parameters frame '((left . 0.5) (top . 0.5))))
 
+(defun my/disable-frame-modes ()
+  "Disable select frame modes where appropriate."
+  (dolist (mode '(menu-bar-mode scroll-bar-mode tool-bar-mode))
+    (when (and (fboundp mode) (symbol-value mode)) (funcall mode -1))))
+
 (defun my/focus-frame (&optional frame)
   "Focus FRAME."
   (interactive)

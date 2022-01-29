@@ -43,9 +43,6 @@
 
 (add-hook 'after-init-hook #'my/display-startup-time)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
-(my/with-add-hook 'server-switch-hook
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1))
 
 (auto-save-mode -1)
 (auto-save-visited-mode 1)
@@ -123,6 +120,9 @@
 
 (dolist (fn '(delete-window split-window-horizontally split-window-vertically))
   (advice-add fn :after #'(lambda (&rest _args) (balance-windows))))
+
+(if (daemonp) (add-hook 'before-make-frame-hook #'my/disable-frame-modes)
+  (my/disable-frame-modes))
 
 
 ;; Bazel
