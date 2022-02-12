@@ -3,7 +3,6 @@
                                   counsel
                                   diminish
                                   dockerfile-mode
-                                  doom-themes
                                   flycheck
                                   go-mode
                                   google-c-style

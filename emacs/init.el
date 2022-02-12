@@ -98,18 +98,6 @@
 
 (defvar my/night-theme nil "Theme to use during the night.")
 
-(when (or window-system (daemonp))
-  (require 'doom-themes)
-
-  (setq my/day-theme 'doom-one-light
-        my/night-theme 'doom-one
-        doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-
-  (add-to-list 'doom-themes-base-faces
-               '(nobreak-space :inherit 'default :underline builtin)
-               :append))
-
 
 ;; “Window” Management
 
