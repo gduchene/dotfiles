@@ -152,7 +152,7 @@
 
 ;; Flycheck
 
-(setq flycheck-clang-language-standard "c++17")
+(setq flycheck-clang-language-standard "c++20")
 
 
 ;; Git
