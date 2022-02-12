@@ -44,15 +44,21 @@ of the region if it is active."
 
 If ENABLE-DARK-THEME-P returns a non-nil value, then DARK-THEME
 is enabled and LIGHT-THEME is disabled, unless DARK-THEME is
-already enabled. The opposite happens if ENABLE-DARK-THEME-P
-returns nil."
+already enabled, undefined, or nil. The opposite happens if
+ENABLE-DARK-THEME-P returns nil, unless if LIGHT-THEME is nil, in
+which case only DARK-THEME is disabled, and nothing else is
+enabled."
   (if (funcall enable-dark-theme-p)
-      (unless (member dark-theme custom-enabled-themes)
-        (load-theme dark-theme :no-confirm)
+      (when (and (custom-theme-p dark-theme)
+                 (not (custom-theme-enabled-p dark-theme)))
+        (enable-theme dark-theme)
         (disable-theme light-theme))
-    (unless (member light-theme custom-enabled-themes)
-      (load-theme light-theme :no-confirm)
-      (disable-theme dark-theme))))
+    (if (and (not light-theme) (custom-theme-enabled-p dark-theme))
+        (disable-theme dark-theme)
+      (when (and (custom-theme-p light-theme)
+                 (not (custom-theme-enabled-p light-theme)))
+        (enable-theme light-theme)
+        (disable-theme dark-theme)))))
 
 
 ;; “Window Management” Functions
