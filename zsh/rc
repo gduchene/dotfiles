@@ -49,6 +49,7 @@ bindkey -e
 export EDITOR=vim
 export LESSHISTFILE=${XDG_CACHE_HOME}/less_history
 export PYTHONSTARTUP=$(dotfiles_root)/python/rc
+export SQLITE_HISTORY=${XDG_CACHE_HOME}/sqlite_history
 export VISUAL=${EDITOR}
 
 setopt AUTO_CD
