@@ -16,7 +16,6 @@ case ${OSTYPE} in
 esac
 
 setopt EXTENDED_GLOB
-setopt REMATCH_PCRE
 
 source_if_exists dotfiles-${UNAME}/zsh/env
 source_if_exists dotfiles-${DOMAIN}/zsh/env
