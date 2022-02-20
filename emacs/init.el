@@ -133,9 +133,8 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 (my/with-add-hook 'dired-mode-hook
-  (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link)))
-
-(define-key dired-mode-map [mouse-1] #'dired-find-file)
+  (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link))
+  (local-set-key [mouse-1] #'dired-find-file))
 
 
 ;; Go
