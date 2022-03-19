@@ -6,10 +6,10 @@
 # To be found, keys must have the following three things:
 #
 #   1. Have the password field set to the passphrase of the key,
-#   2. Have an `SSH' tag set, and
-#   3. Have a `fingerprint' field set to the fingerprint of the key.
+#   2. Have an ‘SSH’ tag set, and
+#   3. Have a ‘fingerprint’ field set to the fingerprint of the key.
 #
-# You must also have the 1Password CLI tool (op) and jq installed.
+# You must also have the 1Password CLI 2 installed.
 
 if [[ ${@[1]} =~ '-[DdKLlTXx]' ]]; then
   command ssh-add $@
@@ -50,9 +50,9 @@ _cleanup() {
 trap "_cleanup ${session}" EXIT HUP INT TERM
 
 zpty -w ssh $(trap -
-              op list items --session ${session} --tags SSH \
-                | op get item                               \
-                     --fields fingerprint,password          \
-                     --session ${session} -                 \
-                | jq -j "select(.fingerprint == \"${fp}\") | .password")
+              op item list --format json --session ${session} --tags SSH \
+                | op item get                                            \
+                     --fields fingerprint,password                       \
+                     --session ${session} -                              \
+                | grep ${fp} | cut -d, -f2)
 zpty -r ssh
