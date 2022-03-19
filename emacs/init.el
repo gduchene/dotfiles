@@ -29,11 +29,12 @@
               fill-column 72)
 
 (setq backup-by-copying t
+      confirm-kill-emacs #'y-or-n-p
       display-time-24hr-format t
       inhibit-startup-screen t
       recenter-positions '(3 middle top bottom)
       require-final-newline t
-      ring-bell-function 'ignore
+      ring-bell-function #'ignore
       sentence-end-double-space nil
       show-paren-delay 0
       uniquify-buffer-name-style 'post-forward-angle-brackets
