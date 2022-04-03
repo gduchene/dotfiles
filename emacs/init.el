@@ -124,7 +124,7 @@
 (setq clang-format-style "google")
 
 (my/with-add-hook 'c-initialization-hook
-  (local-set-key (kbd "C-c f") #'clang-format))
+  (local-set-key (kbd "C-c d") #'clang-format))
 (add-hook 'c-mode-common-hook #'google-set-c-style)
 (add-hook 'c++-mode-hook #'flycheck-mode)
 
