@@ -7,6 +7,7 @@ alias ls='ls -G'
 alias lsh='du -a | sort -h'
 alias pip=pip3
 alias python=python3
+alias rsync='rsync --exclude=.DS_Store'
 
 () {
   local emacs=~/Applications/Emacs.app/Contents/MacOS/Emacs
