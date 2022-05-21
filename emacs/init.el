@@ -52,7 +52,6 @@
 (display-time-mode (if (getenv "TMUX") -1 1))
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
-(show-paren-mode 1)
 
 (global-set-key (kbd "C-c q") #'electric-quote-local-mode)
 
