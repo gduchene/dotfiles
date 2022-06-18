@@ -7,6 +7,7 @@
                                   go-mode
                                   google-c-style
                                   ivy
+                                  json-mode
                                   magit
                                   markdown-mode
                                   protobuf-mode
