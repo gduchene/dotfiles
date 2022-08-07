@@ -18,7 +18,7 @@ if [[ ! -f ${plist} ]]; then
   return
 fi
 
-plutil -insert LSEnvironment ${plist} 2>/dev/null >&2 || true
+plutil -insert LSEnvironment -dictionary ${plist} 2>/dev/null >&2 || true
 for env in PATH SSH_AUTH_SOCK; do
   echo_log Setting LSEnvironment.${env} in Emacs.app to “${(P)env}”.
   plutil -replace LSEnvironment.${env} -string ${(P)env} ${plist}
