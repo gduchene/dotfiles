@@ -90,6 +90,10 @@ enabled."
            (float-time (time-subtract after-init-time before-init-time))
            gcs-done))
 
+(defun my/eglot-organize-imports ()
+  "Interactively call ‘eglot-code-action-organize-imports’."
+  (call-interactively #'eglot-code-action-organize-imports))
+
 (defmacro my/with-add-hook (hook &rest body)
   (declare (indent 1) (debug t))
   `(add-hook ,hook #'(lambda () ,@body)))

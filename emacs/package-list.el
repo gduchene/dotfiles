@@ -3,6 +3,7 @@
                                   counsel
                                   diminish
                                   dockerfile-mode
+                                  eglot
                                   flycheck
                                   go-mode
                                   google-c-style

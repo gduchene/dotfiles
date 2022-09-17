@@ -145,8 +145,11 @@
 
 (my/with-add-hook 'go-mode-hook
   (setq tab-width 2)
-  (add-hook 'before-save-hook #'gofmt-before-save nil :local)
-  (flycheck-mode))
+
+  (when (executable-find "gopls")
+    (eglot-ensure)
+    (add-hook 'before-save-hook #'my/eglot-organize-imports nil :local)
+    (add-hook 'before-save-hook #'eglot-format-buffer nil :local)))
 
 
 ;; Flycheck
