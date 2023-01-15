@@ -9,13 +9,6 @@ alias pip=pip3
 alias python=python3
 alias rsync='rsync --exclude=.DS_Store'
 
-() {
-  local emacs=~/Applications/Emacs.app/Contents/MacOS/Emacs
-  if ! which emacs >/dev/null && [[ -x ${emacs} ]]; then
-    alias emacs=${emacs}
-  fi
-}
-
 if (( ${path[(I)/usr/local/opt/coreutils/libexec/gnubin]} )); then
   alias ls='ls --color --group-directories-first'
   alias lsh='ls -Shrs'

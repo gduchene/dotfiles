@@ -2,10 +2,7 @@
 
 () {
   local dir
-  for dir (
-      /usr/local/opt/*/libexec/gnubin(N)
-      ~/Applications/Emacs.app/Contents/MacOS/bin
-  ); do
+  for dir in /usr/local/opt/*/libexec/gnubin(N); do
     [[ -d ${dir} ]] && path=(${dir} ${path})
   done
 }
