@@ -159,7 +159,6 @@
   (setq tab-width 2)
 
   (when (executable-find "gopls")
-    (corfu-mode)
     (eglot-ensure)
     (add-hook 'before-save-hook #'my/eglot-organize-imports nil :local)
     (add-hook 'before-save-hook #'eglot-format-buffer nil :local)))
