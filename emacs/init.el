@@ -40,6 +40,8 @@
       uniquify-buffer-name-style 'post-forward-angle-brackets
       vc-follow-symlinks nil)
 
+(add-to-list 'completion-styles 'flex)
+
 (put 'list-timers 'disabled nil)
 
 (add-hook 'after-init-hook #'my/display-startup-time)
@@ -52,6 +54,7 @@
 (display-time-mode (if (getenv "TMUX") -1 1))
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
+(marginalia-mode 1)
 
 (global-set-key (kbd "C-c q") #'electric-quote-local-mode)
 
@@ -80,13 +83,12 @@
 
 ;; Search and Completion Management
 
-(ivy-mode 1)
-(diminish 'ivy-mode)
+(vertico-mode 1)
 
-(counsel-mode 1)
-(diminish 'counsel-mode)
+(setq completion-ignore-case t
+      completion-in-region-function #'consult-completion-in-region)
 
-(global-set-key (kbd "C-c s") #'my/swiper)
+(global-set-key (kbd "C-c s") #'consult-ripgrep)
 
 (dolist (fn '(isearch-forward isearch-backward))
   (advice-add fn :after #'my/isearch-region))
@@ -108,6 +110,14 @@
 
 (dolist (fn '(delete-window split-window-horizontally split-window-vertically))
   (advice-add fn :after #'(lambda (&rest _args) (balance-windows))))
+
+(advice-add #'fill-paragraph :around
+            #'(lambda (orig &rest args)
+                (let* ((offset (save-excursion
+                                 (back-to-indentation)
+                                 (current-column)))
+                       (fill-column (+ offset fill-column)))
+                  (apply orig args))))
 
 (if (daemonp) (add-hook 'before-make-frame-hook #'my/disable-frame-modes)
   (my/disable-frame-modes))
@@ -144,9 +154,12 @@
         gofmt-command "goimports"))
 
 (my/with-add-hook 'go-mode-hook
+  (setq-local auto-save-visited-mode nil)
+
   (setq tab-width 2)
 
   (when (executable-find "gopls")
+    (corfu-mode)
     (eglot-ensure)
     (add-hook 'before-save-hook #'my/eglot-organize-imports nil :local)
     (add-hook 'before-save-hook #'eglot-format-buffer nil :local)))
