@@ -10,6 +10,7 @@ source_if_exists() {
 
 [[ ${HOST} =~ \\. ]] && export DOMAIN=${(j:.:)${(s:.:)HOST}[-2,-1]:l}
 export HOST=${HOST:l}
+export HOST_SHORT=${${(%):-%m}:l}
 case ${OSTYPE} in
   darwin*) export UNAME=darwin ;;
    linux*) export UNAME=linux  ;;

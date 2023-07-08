@@ -8,7 +8,7 @@
 (defun my/load-file-variations (filename)
   "Load variations of FILENAME that may exist in other dotfiles
 directories."
-  (dolist (elt '("${UNAME}" "${DOMAIN}" "${HOST}"))
+  (dolist (elt '("${UNAME}" "${DOMAIN}" "${HOST_SHORT}" "${HOST}"))
     (my/load-file (format "dotfiles-%s/%s" elt filename))))
 
 (my/load-file "emacs/functions")
