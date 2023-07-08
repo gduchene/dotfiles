@@ -13,7 +13,7 @@ source_if_exists() {
   return 0
 }
 
-export HOST=${HOST:l}
+export HOST=${HOST}
 export HOST_SHORT=${${(%):-%m}:l}
 export DOMAIN=${${${(%):-%M}#${HOST_SHORT}.}:l}
 case ${OSTYPE} in
