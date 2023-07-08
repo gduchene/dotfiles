@@ -8,9 +8,9 @@ source_if_exists() {
   [[ -f $(dotfiles_root)/$1 ]] && . $(dotfiles_root)/$1 || return 0
 }
 
-[[ ${HOST} =~ \\. ]] && export DOMAIN=${(j:.:)${(s:.:)HOST}[-2,-1]:l}
 export HOST=${HOST:l}
 export HOST_SHORT=${${(%):-%m}:l}
+export DOMAIN=${${${(%):-%M}#${HOST_SHORT}.}:l}
 case ${OSTYPE} in
   darwin*) export UNAME=darwin ;;
    linux*) export UNAME=linux  ;;
