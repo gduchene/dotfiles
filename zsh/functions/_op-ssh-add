@@ -1,3 +1,0 @@
-#compdef op-ssh-add=ssh-add
-
-_ssh $@
