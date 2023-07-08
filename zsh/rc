@@ -72,8 +72,6 @@ if [[ ${TERM_PROGRAM} != iTerm.app ]]; then
   setopt PROMPT_SUBST
 fi
 
-source_if_exists dotfiles-${UNAME}/zsh/rc
-source_if_exists dotfiles-${DOMAIN}/zsh/rc
-source_if_exists dotfiles-${HOST}/zsh/rc
+source_if_exists zsh/rc
 
 compinit -d ${XDG_CACHE_HOME}/zsh/compdump

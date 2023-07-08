@@ -5,7 +5,12 @@ dotfiles_root() {
 }
 
 source_if_exists() {
-  [[ -f $(dotfiles_root)/$1 ]] && . $(dotfiles_root)/$1 || return 0
+  local prefix file
+  for prefix in ${UNAME} ${DOMAIN} ${HOST_SHORT} ${HOST}; do
+    file=$(dotfiles_root)/dotfiles-${prefix}/$1
+    [[ -f ${file} ]] && . ${file}
+  done
+  return 0
 }
 
 export HOST=${HOST:l}
@@ -18,6 +23,4 @@ esac
 
 setopt EXTENDED_GLOB
 
-source_if_exists dotfiles-${UNAME}/zsh/env
-source_if_exists dotfiles-${DOMAIN}/zsh/env
-source_if_exists dotfiles-${HOST}/zsh/env
+source_if_exists zsh/env

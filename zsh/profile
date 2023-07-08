@@ -15,6 +15,4 @@ if [[ -n ${TERM} ]]; then
   stty -ixon
 fi
 
-source_if_exists dotfiles-${UNAME}/zsh/profile
-source_if_exists dotfiles-${DOMAIN}/zsh/profile
-source_if_exists dotfiles-${HOST}/zsh/profile
+source_if_exists zsh/profile
