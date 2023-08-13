@@ -78,6 +78,7 @@
 (my/with-add-hook 'ibuffer-mode-hook
   (ibuffer-switch-to-saved-filter-groups "default"))
 
+(global-set-key (kbd "C-x b") #'consult-buffer)
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 
