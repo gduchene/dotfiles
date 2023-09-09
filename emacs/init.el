@@ -109,6 +109,8 @@
 (global-set-key (kbd "C-c l") #'my/focus-frame)
 (global-set-key (kbd "C-c f") #'toggle-frame-maximized)
 
+(windmove-default-keybindings 'super)
+
 (dolist (fn '(delete-window split-window-horizontally split-window-vertically))
   (advice-add fn :after #'(lambda (&rest _args) (balance-windows))))
 
