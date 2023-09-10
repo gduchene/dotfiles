@@ -21,6 +21,10 @@ directories."
                             (top . 0.3) (width . 160))
       gc-cons-threshold (* 50 1024 1024))
 
+(setopt package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
+                         ("MELPA"    . "https://melpa.org/packages/"))
+        package-user-dir (my/data-file-name "elpa"))
+
 
 ;; Further Early Customization
 

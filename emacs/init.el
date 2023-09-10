@@ -7,22 +7,6 @@
       transient-history-file (my/cache-file-name "transient/history.el"))
 
 
-;; Package Management
-
-(setq package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
-                         ("MELPA"    . "https://melpa.org/packages/"))
-      package-user-dir (my/data-file-name "elpa"))
-
-(my/load-file "emacs/package-list")
-(my/load-file-variations "emacs/package-list")
-
-(unless (file-directory-p package-user-dir)
-  (package-refresh-contents)
-  (package-install-selected-packages))
-
-(package-initialize)
-
-
 ;; General Configuration
 
 (setq-default indent-tabs-mode nil
