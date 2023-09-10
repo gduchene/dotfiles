@@ -1,7 +1,7 @@
 ;; General Configuration
 
-(setq mac-right-command-modifier 'meta
-      mac-right-option-modifier 'none)
+(setopt mac-right-command-modifier 'meta
+        mac-right-option-modifier 'none)
 
 (when (executable-find "gls")
   (setq insert-directory-program "gls"))

@@ -1,28 +1,30 @@
 ;; Path Configuration
 
-(setq abbrev-file-name (my/cache-file-name "abbrev-def")
-      auto-save-list-file-prefix (my/cache-file-name "auto-save/")
-      backup-directory-alist `(("." . ,(my/cache-file-name "backups")))
-      custom-file (my/cache-file-name "custom.el")
-      transient-history-file (my/cache-file-name "transient/history.el"))
+(setopt abbrev-file-name (my/cache-file-name "abbrev_defs")
+        auto-save-list-file-prefix (my/cache-file-name "auto-save-list/")
+        backup-directory-alist `(("." . ,(my/cache-file-name "backups")))
+        custom-file (my/cache-file-name "custom.el")
+        transient-history-file (my/cache-file-name "transient/history.el"))
 
 
 ;; General Configuration
 
-(setq-default indent-tabs-mode nil
-              fill-column 72)
+(setopt backup-by-copying t
+        confirm-kill-emacs #'y-or-n-p
+        delete-old-versions t
+        display-time-24hr-format t
+        fill-column 72
+        inhibit-startup-screen t
+        recenter-positions '(3 middle top bottom)
+        require-final-newline t
+        ring-bell-function #'ignore
+        sentence-end-double-space nil
+        show-paren-delay 0
+        uniquify-buffer-name-style 'post-forward-angle-brackets
+        vc-follow-symlinks nil
+        version-control t)
 
-(setq backup-by-copying t
-      confirm-kill-emacs #'y-or-n-p
-      display-time-24hr-format t
-      inhibit-startup-screen t
-      recenter-positions '(3 middle top bottom)
-      require-final-newline t
-      ring-bell-function #'ignore
-      sentence-end-double-space nil
-      show-paren-delay 0
-      uniquify-buffer-name-style 'post-forward-angle-brackets
-      vc-follow-symlinks nil)
+(setq-default indent-tabs-mode nil)
 
 (add-to-list 'completion-styles 'flex)
 
@@ -46,19 +48,19 @@
 
 ;; Buffer Management
 
-(setq ibuffer-saved-filter-groups
-      '(("default"
-         ("Emacs" (or (mode . completion-list-mode)
-                      (mode . debugger-mode)
-                      (mode . help-mode)
-                      (mode . messages-buffer-mode)
-                      (name . "^\\*scratch\\*$")))
-         ("Magit" (name . "^magit"))
-         ("Dired" (mode . dired-mode))
-         ("Shells" (mode . term-mode))
-         ("Manuals" (or (mode . Info-mode)
-                        (mode . Man-mode)))))
-      ibuffer-show-empty-filter-groups nil)
+(setopt ibuffer-saved-filter-groups
+        '(("default"
+           ("Emacs" (or (mode . completion-list-mode)
+                        (mode . debugger-mode)
+                        (mode . help-mode)
+                        (mode . messages-buffer-mode)
+                        (name . "^\\*scratch\\*$")))
+           ("Magit" (name . "^magit"))
+           ("Dired" (mode . dired-mode))
+           ("Shells" (mode . term-mode))
+           ("Manuals" (or (mode . Info-mode)
+                          (mode . Man-mode)))))
+        ibuffer-show-empty-filter-groups nil)
 
 (my/with-add-hook 'ibuffer-mode-hook
   (ibuffer-switch-to-saved-filter-groups "default"))
@@ -122,7 +124,7 @@
 
 ;; C++
 
-(setq clang-format-style "google")
+(setopt clang-format-style "google")
 
 (my/with-add-hook 'c-initialization-hook
   (local-set-key (kbd "C-c d") #'clang-format))
@@ -158,7 +160,7 @@
 
 ;; Flycheck
 
-(setq flycheck-clang-language-standard "c++20")
+(setopt flycheck-clang-language-standard "c++20")
 
 
 ;; Git
