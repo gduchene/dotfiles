@@ -38,9 +38,10 @@
 (display-time-mode (if (getenv "TMUX") -1 1))
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
-(marginalia-mode 1)
 
 (global-set-key (kbd "C-c q") #'electric-quote-local-mode)
+
+(use-package marginalia :config (marginalia-mode 1) :ensure t)
 
 
 ;; Buffer Management
@@ -62,18 +63,19 @@
 (my/with-add-hook 'ibuffer-mode-hook
   (ibuffer-switch-to-saved-filter-groups "default"))
 
-(global-set-key (kbd "C-x b") #'consult-buffer)
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 
 ;; Search and Completion Management
 
-(vertico-mode 1)
+(use-package consult
+  :bind (("C-x b" . consult-buffer)
+         ("C-c s" . consult-ripgrep)))
+
+(use-package vertico :config (vertico-mode 1) :ensure t)
 
 (setq completion-ignore-case t
       completion-in-region-function #'consult-completion-in-region)
-
-(global-set-key (kbd "C-c s") #'consult-ripgrep)
 
 (dolist (fn '(isearch-forward isearch-backward))
   (advice-add fn :after #'my/isearch-region))
@@ -112,7 +114,10 @@
 
 ;; Bazel
 
-(setq bazel-buildifier-before-save t)
+(use-package bazel
+  :custom (bazel-buildifier-before-save t)
+  :defer t
+  :ensure t)
 
 
 ;; C++
@@ -136,19 +141,19 @@
 
 ;; Go
 
-(when (executable-find "goimports")
-  (setq gofmt-args '("-local" "go.awhk.org")
-        gofmt-command "goimports"))
+(use-package go-mode
+  :custom ((gofmt-args '("-local" "go.awhk.org"))
+           (gofmt-command "goimports")
+           (tab-width 2))
 
-(my/with-add-hook 'go-mode-hook
-  (setq-local auto-save-visited-mode nil)
-
-  (setq tab-width 2)
-
-  (when (executable-find "gopls")
-    (eglot-ensure)
+  :config
+  (defun my/go-add-hooks ()
     (add-hook 'before-save-hook #'my/eglot-organize-imports nil :local)
-    (add-hook 'before-save-hook #'eglot-format-buffer nil :local)))
+    (add-hook 'before-save-hook #'eglot-format-buffer nil :local))
+
+  :defer t
+  :hook ((go-mode . eglot-ensure)
+         (go-mode . my/go-add-hooks)))
 
 
 ;; Flycheck
@@ -158,31 +163,31 @@
 
 ;; Git
 
-(setq git-commit-summary-max-length 50)
+(use-package git-commit
+  :custom (git-commit-summary-max-length 50)
+  :hook ((git-commit-setup . electric-quote-local-mode)
+         (git-commit-setup . git-commit-turn-on-flyspell)))
 
-(add-hook 'git-commit-setup-hook #'electric-quote-local-mode)
-(add-hook 'git-commit-setup-hook #'git-commit-turn-on-flyspell)
-
-(global-set-key (kbd "C-c k") #'magit-status)
+(use-package magit :bind ("C-c k" . magit-status) :ensure t)
 
 
 ;; Org
 
-(setq org-startup-folded "showall")
+(use-package org :custom (org-startup-folded 'showall) :defer t)
 
 
 ;; Shell Scripts
 
-(setq sh-basic-offset 2)
-
-(push '("/PKGBUILD\\'" . sh-mode) auto-mode-alist)
-(push '("#compdef .+" . sh-mode) magic-mode-alist)
+(use-package sh-script
+  :custom (sh-basic-offset 2)
+  :magic ("#compdef .+" . sh-mode)
+  :mode ("/PKGBUILD\\'" . sh-mode))
 
 
 ;; systemd
 
-(dolist (regexp '("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
-  (push `(,regexp . conf-mode) auto-mode-alist))
+(use-package conf-mode
+  :mode ("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
 
 
 ;; Further Customization
