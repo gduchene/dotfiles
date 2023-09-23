@@ -167,8 +167,9 @@
 
 (use-package git-commit
   :custom (git-commit-summary-max-length 50)
-  :hook ((git-commit-setup . electric-quote-local-mode)
-         (git-commit-setup . git-commit-turn-on-flyspell)))
+  :hook ((git-commit-setup . electric-quote-local-mode)))
+
+(use-package jinx :ensure t :hook git-commit-setup)
 
 (use-package magit :bind ("C-c k" . magit-status) :ensure t)
 
