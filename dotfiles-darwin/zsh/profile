@@ -1,8 +1,9 @@
 # -*- mode: shell-script -*-
 
+# Use some GNU tools by default.
 () {
-  local dir
-  for dir in /usr/local/opt/*/libexec/gnubin(N); do
-    [[ -d ${dir} ]] && path=(${dir} ${path})
+  local cmd
+  for cmd in cksum sed tar; do
+    (( ${+commands[g${cmd}]} )) && alias ${cmd}=g${cmd}
   done
 }
