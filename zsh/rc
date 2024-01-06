@@ -43,6 +43,7 @@ alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ls -Ahl'
 alias mv='mv -i'
+alias rm='rm -i'
 alias senv='env | sort'
 
 bindkey -e
