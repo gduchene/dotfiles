@@ -187,6 +187,25 @@
   :mode ("/PKGBUILD\\'" . sh-mode))
 
 
+;; Swift
+
+(use-package eglot
+  :config (add-to-list 'eglot-server-programs
+                       '(swift-mode . ("xcrun" "sourcekit-lsp")))
+  :defer t)
+
+(use-package swift-mode
+  :init
+  (defun my/swift-format ()
+    "Format Swift code."
+    (interactive)
+    (save-buffer)
+    (shell-command (format "swift format -i %s" (buffer-file-name))))
+  :hook (swift-mode . eglot-ensure)
+  :bind (:map swift-mode-map ("C-c d" . my/swift-format))
+  :ensure t)
+
+
 ;; systemd
 
 (use-package conf-mode
