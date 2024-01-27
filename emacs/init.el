@@ -72,7 +72,8 @@
 
 (use-package consult
   :bind (("C-x b" . consult-buffer)
-         ("C-c s" . consult-ripgrep)))
+         ("C-c s" . consult-ripgrep))
+  :ensure t)
 
 (use-package vertico :config (vertico-mode 1) :ensure t)
 
