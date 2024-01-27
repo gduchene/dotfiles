@@ -41,6 +41,7 @@
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
 
+(global-set-key (kbd "C-c j") #'join-line)
 (global-set-key (kbd "C-c q") #'electric-quote-local-mode)
 
 (use-package marginalia :config (marginalia-mode 1) :ensure t)
