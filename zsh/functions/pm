@@ -1,0 +1,6 @@
+# -*- mode: shell-script -*-
+
+pm() {
+  PS1="🔒 ${PS1}"
+  fc -p
+}

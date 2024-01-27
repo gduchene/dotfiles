@@ -10,7 +10,7 @@
   done
 }
 
-autoload -Uz compinit zmv
+autoload -Uz compinit pm zmv
 
 [[ ! -d ${XDG_CACHE_HOME}/zsh ]] && mkdir -p ${XDG_CACHE_HOME}/zsh
 zstyle ':completion:*' cache-path ${XDG_CACHE_HOME}/zsh/cache
@@ -43,6 +43,7 @@ alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ls -Ahl'
 alias mv='mv -i'
+alias pm=' pm'
 alias rm='rm -i'
 alias senv='env | sort'
 
