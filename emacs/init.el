@@ -136,6 +136,10 @@
 
 ;; Dired
 
+(use-package dired
+  :defer t
+  :custom (dired-listing-switches (concat dired-listing-switches " -h")))
+
 (put 'dired-find-alternate-file 'disabled nil)
 
 (my/with-add-hook 'dired-mode-hook
