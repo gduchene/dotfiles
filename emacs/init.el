@@ -4,6 +4,7 @@
         auto-save-list-file-prefix (my/cache-file-name "auto-save-list/")
         backup-directory-alist `(("." . ,(my/cache-file-name "backups")))
         custom-file (my/cache-file-name "custom.el")
+        delete-by-moving-to-trash t
         transient-history-file (my/cache-file-name "transient/history.el"))
 
 
