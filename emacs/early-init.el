@@ -23,7 +23,8 @@ directories."
 
 (setopt package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
                          ("MELPA"    . "https://melpa.org/packages/"))
-        package-user-dir (my/data-file-name "elpa"))
+        package-user-dir (my/data-file-name "elpa")
+        package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
 
 ;; Further Early Customization
