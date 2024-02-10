@@ -66,9 +66,9 @@ enabled."
   "Focus FRAME."
   (interactive)
   (delete-other-windows)
-  (modify-frame-parameters frame '((fullscreen . fullheight)
-                                   (left . 0.5)
-                                   (width . 100))))
+  (modify-frame-parameters frame '((height . 1.0) (width . 0.5)
+                                   (left . 0.5) (top . 1.0)
+                                   (user-position . t))))
 
 
 ;; Misc. Stuff
