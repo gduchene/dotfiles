@@ -42,8 +42,8 @@
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
 
-(global-set-key (kbd "C-c j") #'join-line)
-(global-set-key (kbd "C-c q") #'electric-quote-local-mode)
+(keymap-global-set "C-c j" #'join-line)
+(keymap-global-set "C-c q" #'electric-quote-local-mode)
 
 (use-package marginalia :config (marginalia-mode 1) :ensure t)
 
@@ -67,7 +67,7 @@
 (my/with-add-hook 'ibuffer-mode-hook
   (ibuffer-switch-to-saved-filter-groups "default"))
 
-(global-set-key (kbd "C-x C-b") #'ibuffer)
+(keymap-global-set "C-x C-b" #'ibuffer)
 
 
 ;; Search and Completion Management
@@ -95,10 +95,10 @@
 
 ;; “Window” Management
 
-(global-set-key (kbd "<C-tab>") #'other-window)
-(global-set-key (kbd "<C-M-tab>") #'other-frame)
-(global-set-key (kbd "C-c l") #'my/focus-frame)
-(global-set-key (kbd "C-c f") #'toggle-frame-maximized)
+(keymap-global-set "C-TAB" #'other-window)
+(keymap-global-set "C-M-TAB" #'other-frame)
+(keymap-global-set "C-c l" #'my/focus-frame)
+(keymap-global-set "C-c f" #'toggle-frame-maximized)
 
 (windmove-default-keybindings 'super)
 
@@ -130,7 +130,7 @@
 (setopt clang-format-style "google")
 
 (my/with-add-hook 'c-initialization-hook
-  (local-set-key (kbd "C-c d") #'clang-format))
+  (keymap-local-set "C-c d" #'clang-format))
 (add-hook 'c-mode-common-hook #'google-set-c-style)
 (add-hook 'c++-mode-hook #'flycheck-mode)
 
@@ -146,7 +146,7 @@
 
 (my/with-add-hook 'dired-mode-hook
   (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link))
-  (local-set-key [mouse-1] #'dired-find-file))
+  (keymap-local-set "<mouse-1>" #'dired-find-file))
 
 
 ;; Go
