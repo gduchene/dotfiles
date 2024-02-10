@@ -138,6 +138,7 @@
 ;; Dired
 
 (use-package dired
+  :bind (:map dired-mode-map ("b" . dired-up-directory))
   :defer t
   :custom (dired-listing-switches (concat dired-listing-switches " -h")))
 
