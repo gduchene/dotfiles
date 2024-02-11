@@ -3,6 +3,7 @@
 (setopt abbrev-file-name (my/cache-file-name "abbrev_defs")
         auto-save-list-file-prefix (my/cache-file-name "auto-save-list/")
         backup-directory-alist `(("." . ,(my/cache-file-name "backups")))
+        bookmark-default-file (my/data-file-name "bookmarks")
         custom-file (my/cache-file-name "custom.el")
         delete-by-moving-to-trash t
         transient-history-file (my/cache-file-name "transient/history.el"))
