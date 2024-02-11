@@ -98,7 +98,6 @@
 
 (keymap-global-set "C-TAB" #'other-window)
 (keymap-global-set "C-M-TAB" #'other-frame)
-(keymap-global-set "C-c l" #'my/focus-frame)
 (keymap-global-set "C-c f" #'toggle-frame-maximized)
 
 (windmove-default-keybindings 'super)

@@ -15,3 +15,8 @@
     (when my/night-theme (load-theme my/night-theme :no-confirm :no-enable))
     (run-at-time nil (* 15 60) #'my/maybe-switch-theme my/day-theme
                  my/night-theme #'my/macos-dark-p)))
+
+
+;; “Window” Management
+
+(keymap-global-set "C-c l" #'my/resize-frame)

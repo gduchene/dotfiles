@@ -62,14 +62,6 @@ enabled."
   (dolist (mode '(menu-bar-mode scroll-bar-mode tool-bar-mode))
     (when (and (fboundp mode) (symbol-value mode)) (funcall mode -1))))
 
-(defun my/focus-frame (&optional frame)
-  "Focus FRAME."
-  (interactive)
-  (delete-other-windows)
-  (modify-frame-parameters frame '((height . 1.0) (width . 0.5)
-                                   (left . 0.5) (top . 1.0)
-                                   (user-position . t))))
-
 
 ;; Misc. Stuff
 
