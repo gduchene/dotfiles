@@ -159,6 +159,13 @@
   (keymap-local-set "<mouse-1>" #'dired-find-file))
 
 
+;; Eshell
+
+(use-package eshell
+  :bind (("C-c e" . eshell))
+  :custom (eshell-directory-name (my/cache-file-name "eshell")))
+
+
 ;; Go
 
 (use-package go-mode
