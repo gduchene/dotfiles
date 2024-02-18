@@ -127,12 +127,22 @@
 
 ;; C++
 
-(setopt clang-format-style "google")
+(use-package cc-mode
+  :config
+  (defun my/c++-hooks ()
+    (setopt flycheck-clang-language-standard "c++20"))
 
-(my/with-add-hook 'c-initialization-hook
-  (keymap-local-set "C-c d" #'clang-format))
-(add-hook 'c-mode-common-hook #'google-set-c-style)
-(add-hook 'c++-mode-hook #'flycheck-mode)
+  :hook
+  ((c-mode-common . google-set-c-style)
+   (c++-mode . flycheck-mode)
+   (c++-mode . my/c++-hooks))
+
+  :bind (:map c-mode-base-map ("C-c d" . clang-format))
+  :custom (clang-format-style "google"))
+
+(use-package clang-format :defer t :ensure t)
+(use-package flycheck :defer t :ensure t)
+(use-package google-c-style :defer t :ensure t)
 
 
 ;; Dired
@@ -161,14 +171,8 @@
     (add-hook 'before-save-hook #'my/eglot-organize-imports nil :local)
     (add-hook 'before-save-hook #'eglot-format-buffer nil :local))
 
-  :defer t
   :hook ((go-mode . eglot-ensure)
          (go-mode . my/go-add-hooks)))
-
-
-;; Flycheck
-
-(setopt flycheck-clang-language-standard "c++20")
 
 
 ;; Git
