@@ -23,8 +23,9 @@ directories."
 
 (setopt package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
                          ("MELPA"    . "https://melpa.org/packages/"))
+        package-gnupghome-dir (expand-file-name "gnupg" package-user-dir)
         package-user-dir (my/data-file-name "elpa")
-        package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
+        treesit-extra-load-path `(,(my/data-file-name "tree-sitter")))
 
 
 ;; Further Early Customization
