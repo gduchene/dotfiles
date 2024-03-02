@@ -22,12 +22,6 @@ is active."
 
 ;; Theme Functions
 
-(defun my/macos-dark-p ()
-  "Returns non-nil if macOS is currently in dark mode, nil otherwise."
-  (interactive)
-  (string= (shell-command-to-string "defaults read -g AppleInterfaceStyle")
-           "Dark\n"))
-
 (defun my/maybe-switch-theme (light-theme dark-theme enable-dark-theme-p)
   "Switch between themes.
 
