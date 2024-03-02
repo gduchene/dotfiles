@@ -163,7 +163,9 @@
 
 (use-package eshell
   :bind (("C-c e" . eshell))
-  :custom (eshell-directory-name (my/cache-file-name "eshell")))
+  :custom ((eshell-cmpl-ignore-case t)
+           (eshell-directory-name (my/cache-file-name "eshell"))
+           (eshell-scroll-show-maximum-output nil)))
 
 
 ;; Go
