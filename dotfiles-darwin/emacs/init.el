@@ -20,3 +20,8 @@
 ;; “Window” Management
 
 (keymap-global-set "C-c l" #'my/resize-frame)
+
+(dolist (k '(("C-s-<left>" . "C-c l i") ("C-s-<right>" . "C-c l o")))
+  (if (keymap-global-lookup (car k))
+      (message "`%s' is already bound, skipping." (car k))
+    (keymap-global-set (car k) (cdr k))))
