@@ -198,6 +198,13 @@
 (use-package org :custom (org-startup-folded 'showall) :defer t)
 
 
+;; Rust
+
+(use-package rust-mode
+  :hook (rust-mode . eglot-ensure)
+  :ensure t)
+
+
 ;; Shell Scripts
 
 (use-package sh-script
