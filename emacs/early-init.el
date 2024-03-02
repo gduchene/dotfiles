@@ -17,12 +17,11 @@ directories."
 
 ;; Early Customization
 
-(setq default-frame-alist '((height . 40) (left . 0.5)
-                            (top . 0.3) (width . 160))
-      gc-cons-threshold (* 50 1024 1024))
-
-(setopt package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
-                         ("MELPA"    . "https://melpa.org/packages/"))
+(setopt default-frame-alist '((height . 40) (left . 0.5)
+                              (top . 0.3) (width . 160))
+        gc-cons-threshold (* 50 1024 1024)
+        package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
+                           ("MELPA"    . "https://melpa.org/packages/"))
         package-gnupghome-dir (expand-file-name "gnupg" package-user-dir)
         package-user-dir (my/data-file-name "elpa")
         treesit-extra-load-path `(,(my/data-file-name "tree-sitter")))
