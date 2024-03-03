@@ -181,7 +181,9 @@
     (add-hook 'before-save-hook #'eglot-format-buffer nil :local))
 
   :hook ((go-mode . eglot-ensure)
-         (go-mode . my/go-add-hooks)))
+         (go-mode . my/go-add-hooks))
+
+  :ensure t)
 
 
 ;; Git
