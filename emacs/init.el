@@ -17,6 +17,7 @@
         display-time-24hr-format t
         fill-column 72
         inhibit-startup-screen t
+        package-gnupghome-dir (expand-file-name "gnupg" package-user-dir)
         recenter-positions '(3 middle top bottom)
         require-final-newline t
         ring-bell-function #'ignore
