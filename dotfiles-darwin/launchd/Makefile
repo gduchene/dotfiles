@@ -1,4 +1,3 @@
-export ZSH    := $(shell which zsh)
 export ENV_SH := $(realpath ../bin/env.sh)
 
 all: $(foreach plist, $(wildcard *.plist), ~/Library/LaunchAgents/${plist})
