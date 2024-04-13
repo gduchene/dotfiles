@@ -72,6 +72,13 @@
 (keymap-global-set "C-x C-b" #'ibuffer)
 
 
+;; Project Management
+
+(use-package project
+  :custom (project-list-file (my/cache-file-name "projects"))
+  :defer t)
+
+
 ;; Search and Completion Management
 
 (use-package consult
