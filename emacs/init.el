@@ -84,6 +84,9 @@
 (setq completion-ignore-case t
       completion-in-region-function #'consult-completion-in-region)
 
+(setopt read-buffer-completion-ignore-case t
+        read-file-name-completion-ignore-case t)
+
 (dolist (fn '(isearch-forward isearch-backward))
   (advice-add fn :after #'my/isearch-region))
 
