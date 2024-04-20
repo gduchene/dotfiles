@@ -6,7 +6,7 @@ dotfiles_root() {
 
 source_if_exists() {
   local prefix file
-  for prefix in ${UNAME} ${DOMAIN} ${HOST_SHORT} ${HOST}; do
+  for prefix in ${UNAME} ${DOMAIN} ${HOST_SHORT} ${HOST} local; do
     file=$(dotfiles_root)/dotfiles-${prefix}/$1
     [[ -f ${file} ]] && . ${file}
   done
