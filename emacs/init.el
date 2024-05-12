@@ -112,6 +112,7 @@
 (keymap-global-set "C-c f" #'toggle-frame-maximized)
 
 (windmove-default-keybindings 'super)
+(windmove-swap-states-default-keybindings)
 
 (dolist (fn '(delete-window split-window-horizontally split-window-vertically))
   (advice-add fn :after #'(lambda (&rest _args) (balance-windows))))
