@@ -176,6 +176,7 @@
 (use-package eshell
   :bind (("C-c e" . eshell))
   :custom ((eshell-cmpl-ignore-case t)
+           (eshell-aliases-file (expand-file-name "alias" user-emacs-directory))
            (eshell-directory-name (my/cache-file-name "eshell"))
            (eshell-scroll-show-maximum-output nil)))
 
