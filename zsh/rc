@@ -46,7 +46,9 @@ alias mv='mv -i'
 alias pgrep='pgrep -fl'
 alias pm=' pm'
 alias rm='rm -i'
+alias s=swift
 alias senv='env | sort'
+alias spm='swift package'
 
 bindkey -e
 
