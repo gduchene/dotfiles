@@ -213,7 +213,11 @@
 
 ;; Org
 
-(use-package org :custom (org-startup-folded 'showall) :defer t)
+(use-package org
+  :custom
+  ((org-hide-emphasis-markers t)
+   (org-startup-folded 'showall))
+  :defer t)
 
 
 ;; Rust
