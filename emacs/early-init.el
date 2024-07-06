@@ -1,8 +1,12 @@
+(defconst my/dotfiles-directory
+  (file-truename (concat user-emacs-directory "../"))
+  "Directory containing all configuration files.")
+
 ;; Helper Loading Functions
 
 (defun my/load-file (filename)
   "Load FILENAME if it exists within the dotfiles directory."
-  (load (concat (file-truename user-emacs-directory) "../"
+  (load (concat my/dotfiles-directory
                 (substitute-in-file-name filename)) :no-error))
 
 (defun my/load-file-variations (filename)

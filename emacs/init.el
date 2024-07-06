@@ -53,12 +53,13 @@
 ;; Buffer Management
 
 (setopt ibuffer-saved-filter-groups
-        '(("default"
+        `(("default"
            ("Emacs" (or (mode . completion-list-mode)
                         (mode . debugger-mode)
                         (mode . help-mode)
                         (mode . messages-buffer-mode)
                         (name . "^\\*scratch\\*$")))
+           ("dotfiles" (filename . ,(concat my/dotfiles-directory ".+")))
            ("Magit" (name . "^magit"))
            ("Dired" (mode . dired-mode))
            ("Shells" (mode . term-mode))
