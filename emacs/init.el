@@ -52,25 +52,27 @@
 
 ;; Buffer Management
 
-(setopt ibuffer-saved-filter-groups
-        `(("default"
-           ("Emacs" (or (mode . completion-list-mode)
-                        (mode . debugger-mode)
-                        (mode . help-mode)
-                        (mode . messages-buffer-mode)
-                        (name . "^\\*scratch\\*$")))
-           ("dotfiles" (filename . ,(concat my/dotfiles-directory ".+")))
-           ("Magit" (name . "^magit"))
-           ("Dired" (mode . dired-mode))
-           ("Shells" (mode . term-mode))
-           ("Manuals" (or (mode . Info-mode)
-                          (mode . Man-mode)))))
-        ibuffer-show-empty-filter-groups nil)
-
-(my/with-add-hook 'ibuffer-mode-hook
-  (ibuffer-switch-to-saved-filter-groups "default"))
-
-(keymap-global-set "C-x C-b" #'ibuffer)
+(use-package ibuffer
+  :config
+  (defun my/ibuffer-hooks ()
+    (ibuffer-switch-to-saved-filter-groups "default"))
+  :hook (ibuffer-mode . my/ibuffer-hooks)
+  :bind ("C-x C-b" . ibuffer)
+  :custom
+  ((ibuffer-saved-filter-groups
+    `(("default"
+       ("Emacs" (or (mode . completion-list-mode)
+                    (mode . debugger-mode)
+                    (mode . help-mode)
+                    (mode . messages-buffer-mode)
+                    (name . "^\\*scratch\\*$")))
+       ("dotfiles" (filename . ,(concat my/dotfiles-directory ".+")))
+       ("Magit" (name . "^magit"))
+       ("Dired" (mode . dired-mode))
+       ("Shells" (mode . term-mode))
+       ("Manuals" (or (mode . Info-mode)
+                      (mode . Man-mode))))))
+   (ibuffer-show-empty-filter-groups nil)))
 
 
 ;; Project Management
