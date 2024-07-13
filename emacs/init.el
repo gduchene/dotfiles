@@ -161,15 +161,16 @@
 ;; Dired
 
 (use-package dired
-  :bind (:map dired-mode-map ("b" . dired-up-directory))
-  :defer t
+  :config
+  (defun my/dired-hooks ()
+    (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link)))
+  (put 'dired-find-alternate-file 'disabled nil)
+  :bind
+  (:map dired-mode-map
+        ("b" . dired-up-directory)
+        ("<mouse-1>" . dired-find-file))
+  :hook (dired-mode . my/dired-hooks)
   :custom (dired-listing-switches (concat dired-listing-switches " -h")))
-
-(put 'dired-find-alternate-file 'disabled nil)
-
-(my/with-add-hook 'dired-mode-hook
-  (setq-local mouse-1-click-follows-link (- mouse-1-click-follows-link))
-  (keymap-local-set "<mouse-1>" #'dired-find-file))
 
 
 ;; Eshell
