@@ -7,6 +7,13 @@
   (setq insert-directory-program "gls"))
 
 
+;; Org
+
+(use-package org-roam
+  :defer t
+  :custom (org-roam-directory "~/Documents/ZK/"))
+
+
 ;; Theme Management
 
 (when (or window-system (daemonp))
