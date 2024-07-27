@@ -52,7 +52,11 @@ alias spm='swift package'
 
 bindkey -e
 
-export EDITOR=vim
+if [[ -S ${XDG_RUNTIME_DIR}/emacs/server ]]; then
+  export EDITOR='emacsclient -t'
+else
+  export EDITOR=vim
+fi
 export LESSHISTFILE=${XDG_CACHE_HOME}/less_history
 export PYTHONSTARTUP=$(dotfiles_root)/python/rc
 export SQLITE_HISTORY=${XDG_CACHE_HOME}/sqlite_history
