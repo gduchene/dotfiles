@@ -43,6 +43,13 @@ enabled."
         (enable-theme light-theme)
         (disable-theme dark-theme)))))
 
+(defun my/set-frame-font ()
+  "Set font in the selected frame."
+  (let* ((pred (lambda (font) (x-family-fonts (plist-get font :family))))
+         (font (seq-find pred my/fonts)))
+    (when font
+      (apply #'set-face-attribute `(default nil ,@font)))))
+
 
 ;; “Window Management” Functions
 

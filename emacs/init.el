@@ -107,6 +107,15 @@
 
 (defvar my/night-theme nil "Theme to use during the night.")
 
+(defvar my/fonts
+  '((:family "Iosevka Fixed Slab" :height 140)
+    (:family "Iosevka SS04" :height 140)
+    (:family "Iosevka" :height 140)
+    (:family "Menlo" :height 120))
+  "Fonts to try as default.")
+
+(add-hook 'after-init-hook #'my/set-frame-font)
+
 
 ;; “Window” Management
 
