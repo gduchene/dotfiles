@@ -243,7 +243,9 @@
 (use-package org-roam
   :config (org-roam-db-autosync-enable)
   :bind ("C-c n f" . org-roam-node-find)
-  :custom (org-roam-db-location (my/data-file-name "org-roam.db"))
+  :custom
+  ((org-id-locations-file (my/data-file-name "org-id-locations"))
+   (org-roam-db-location (my/data-file-name "org-roam.db")))
   :ensure t)
 
 
