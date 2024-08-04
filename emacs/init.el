@@ -98,6 +98,12 @@
          ("C-c s" . consult-ripgrep))
   :ensure t)
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-category-overrides '((file (styles basic partial-completion))))
+  (completion-styles '(orderless basic)))
+
 (use-package vertico :config (vertico-mode 1) :ensure t)
 
 (setq completion-ignore-case t
