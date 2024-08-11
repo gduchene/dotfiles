@@ -75,7 +75,7 @@
                     (mode . help-mode)
                     (mode . messages-buffer-mode)
                     (name . "^\\*scratch\\*$")))
-       ("dotfiles" (filename . ,(concat my/dotfiles-directory ".+")))
+       ("dotfiles" (filename . ,(concat my/dotfiles-directory ".*")))
        ("Magit" (name . "^magit"))
        ("Dired" (mode . dired-mode))
        ("Shells" (mode . term-mode))
