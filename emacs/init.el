@@ -129,7 +129,9 @@
     (:family "Menlo" :height 120))
   "Fonts to try as default.")
 
-(add-hook 'after-init-hook #'my/set-frame-font)
+(let ((hook (cond ((daemonp) 'server-after-make-frame-hook)
+                  (window-system 'after-init-hook))))
+  (when hook (add-hook hook #'my/set-frame-font)))
 
 
 ;; “Window” Management
