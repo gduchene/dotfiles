@@ -11,6 +11,16 @@
 
 ;; Search Helpers
 
+(defun my/consult-ripgrep (&optional dir)
+  "Call ‘consult-ripgrep’ with the contents of the region as INITIAL
+when possible."
+  (interactive)
+  (if (not (use-region-p))
+      (consult-ripgrep dir)
+    (deactivate-mark)
+    (consult-ripgrep dir (buffer-substring-no-properties
+                          (region-beginning) (region-end)))))
+
 (defun my/isearch-region (&rest _args)
   "Pull the contents of the region into the search string if it
 is active."

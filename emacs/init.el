@@ -95,7 +95,7 @@
 
 (use-package consult
   :bind (("C-x b" . consult-buffer)
-         ("C-c s" . consult-ripgrep))
+         ("C-c s" . my/consult-ripgrep))
   :ensure t)
 
 (use-package orderless
