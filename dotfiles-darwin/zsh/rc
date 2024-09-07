@@ -5,6 +5,7 @@ autoload -Uz vault
 alias df='df -Ph'
 alias ls='ls -G'
 alias lsh='du -a | sort -h'
+alias pbclear='pbcopy </dev/null'
 alias pip=pip3
 alias python=python3
 alias rsync='rsync --exclude=.DS_Store'
