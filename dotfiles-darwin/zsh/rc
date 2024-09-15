@@ -4,13 +4,13 @@ autoload -Uz vault
 
 alias df='df -Ph'
 alias ls='ls -G'
-alias lsh='du -a | sort -h'
 alias pbclear='pbcopy </dev/null'
 alias pip=pip3
 alias python=python3
 alias rsync='rsync --exclude=.DS_Store'
 
-if (( ${path[(I)/usr/local/opt/coreutils/libexec/gnubin]} )); then
-  alias ls='ls --color --group-directories-first'
-  alias lsh='ls -Shrs'
+if (( ${+commands[gls]} )); then
+  alias lsh='gls -Shrs'
+else
+  alias lsh='ls -Shlr | cut -f5- -w'
 fi
