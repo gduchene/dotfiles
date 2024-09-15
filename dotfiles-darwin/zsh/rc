@@ -5,8 +5,6 @@ autoload -Uz vault
 alias df='df -Ph'
 alias ls='ls -G'
 alias pbclear='pbcopy </dev/null'
-alias pip=pip3
-alias python=python3
 alias rsync='rsync --exclude=.DS_Store'
 
 if (( ${+commands[gls]} )); then
