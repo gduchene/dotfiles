@@ -1,6 +1,7 @@
 ;; General Configuration
 
-(setopt mac-right-command-modifier 'meta
+(setopt frame-resize-pixelwise t
+        mac-right-command-modifier 'meta
         mac-right-option-modifier 'none)
 
 (when (executable-find "gls")
