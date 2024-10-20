@@ -26,5 +26,8 @@
 [pull]
   ff = only
 
+[push]
+  followTags = true
+
 [user]
   name = Grégoire Duchêne
