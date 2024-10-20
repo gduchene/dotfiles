@@ -201,6 +201,11 @@
   :custom (dired-listing-switches (concat dired-listing-switches " -h")))
 
 
+;; Dockerfile
+
+(use-package dockerfile-mode :defer t :ensure t)
+
+
 ;; Eshell
 
 (use-package eshell
