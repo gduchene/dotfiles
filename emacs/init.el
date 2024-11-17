@@ -29,8 +29,6 @@
 
 (setq-default indent-tabs-mode nil)
 
-(add-to-list 'completion-styles 'flex)
-
 (put 'list-timers 'disabled nil)
 
 (add-hook 'after-init-hook #'my/display-startup-time)
