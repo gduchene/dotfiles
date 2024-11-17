@@ -70,18 +70,6 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-if [[ ${TERM_PROGRAM} != iTerm.app ]]; then
-  autoload -Uz vcs_info
-
-  zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:*' formats '[%b]'
-
-  RPROMPT='${vcs_info_msg_0_}'
-  precmd_functions+=(vcs_info)
-
-  setopt PROMPT_SUBST
-fi
-
 source_if_exists zsh/rc
 
 compinit -d ${XDG_CACHE_HOME}/zsh/compdump

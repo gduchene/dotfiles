@@ -12,3 +12,20 @@ if (( ${+commands[gls]} )); then
 else
   alias lsh='ls -Shlr | cut -f5- -w'
 fi
+
+# Prevent Apple Terminal from cluttering ${HOME}.
+if [[ ${TERM_PROGRAM} == Apple_Terminal ]]; then
+  SHELL_SESSIONS_DISABLE=1
+fi
+
+if [[ ${TERM_PROGRAM} != iTerm.app ]]; then
+  autoload -Uz vcs_info
+
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' formats '[%b]'
+
+  RPROMPT='${vcs_info_msg_0_}'
+  precmd_functions+=(vcs_info)
+
+  setopt PROMPT_SUBST
+fi
