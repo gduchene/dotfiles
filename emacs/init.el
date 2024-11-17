@@ -42,6 +42,7 @@
 (electric-indent-mode -1)
 (global-auto-revert-mode 1)
 
+(keymap-global-set "C-c DEL" #'bury-buffer)
 (keymap-global-set "C-c j" #'join-line)
 (keymap-global-set "C-c q" #'electric-quote-local-mode)
 
