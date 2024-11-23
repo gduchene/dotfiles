@@ -5,3 +5,11 @@ export XDG_CACHE_HOME=~/Library/Caches
 export XDG_CONFIG_HOME=~/Library/Preferences
 export XDG_DATA_HOME=~/Library
 export XDG_RUNTIME_DIR=${TMPDIR%/}
+
+# Prevent Apple Terminal from cluttering ${HOME}.
+#
+# This needs to be in the env file as the variable has to be set before
+# the stuff in /etc/zshrc_Apple_Terminal kicks in.
+if [[ ${TERM_PROGRAM} == Apple_Terminal ]]; then
+  SHELL_SESSIONS_DISABLE=1
+fi
