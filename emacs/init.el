@@ -205,6 +205,15 @@
 (use-package dockerfile-mode :defer t :ensure t)
 
 
+;; Eglot
+
+(use-package eglot
+  :defer t
+  :custom
+  ((eglot-autoshutdown t)
+   (eglot-extend-to-xref t)))
+
+
 ;; Eshell
 
 (use-package eshell
