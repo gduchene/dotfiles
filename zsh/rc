@@ -26,6 +26,7 @@ SAVEHIST=${HISTSIZE}
 WORDCHARS=${WORDCHARS/\//}
 
 alias bc='bc -lq'
+alias c=cargo
 alias cdr='cd $(git root)'
 alias cp='cp -i'
 alias ddig='dig +noall +answer'
