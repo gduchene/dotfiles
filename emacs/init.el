@@ -211,7 +211,8 @@
   :defer t
   :custom
   ((eglot-autoshutdown t)
-   (eglot-extend-to-xref t)))
+   (eglot-extend-to-xref t)
+   (eglot-ignored-server-capabilities '(:inlayHintProvider))))
 
 
 ;; Eshell
