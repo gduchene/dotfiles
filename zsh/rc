@@ -50,6 +50,7 @@ alias rm='rm -i'
 alias s=swift
 alias senv='env | sort'
 alias spm='swift package'
+alias tree='tree --gitignore'
 
 bindkey -e
 
