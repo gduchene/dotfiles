@@ -2,8 +2,8 @@
 
 () {
   local dir
-  for dir in ~/{.local/bin,bin} ${GOPATH:-~/go}/bin; do
-    [[ -d ${dir} ]] && path=(${dir} ${path})
+  for dir in ~/.local ${CARGO_HOME} ${GOPATH}; do
+    [[ -d ${dir}/bin ]] && path=(${dir}/bin ${path})
   done
 }
 
