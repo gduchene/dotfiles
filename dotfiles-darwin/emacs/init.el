@@ -15,6 +15,16 @@
   :custom (org-roam-directory "~/Documents/ZK/"))
 
 
+;; Server
+
+(use-package server
+  :config
+  (defun my/server-start ()
+    (when (and (display-graphic-p) (not (server-running-p)))
+      (server-start)))
+  :hook (after-init . my/server-start))
+
+
 ;; Theme Management
 
 (when (or window-system (daemonp))

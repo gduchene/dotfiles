@@ -48,15 +48,6 @@
 
 (use-package marginalia :config (marginalia-mode 1) :ensure t)
 
-(advice-add #'server-start :around
-            #'(lambda (orig &rest args)
-                (let ((socket (expand-file-name server-name server-socket-dir)))
-                  (unless (and (boundp 'server-process)
-                               (file-readable-p socket))
-                    (apply orig args)))))
-
-(add-hook 'after-init-hook #'server-start)
-
 
 ;; Buffer Management
 
