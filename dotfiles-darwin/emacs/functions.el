@@ -33,3 +33,12 @@
        map)
      t nil
      "Use %k to resize the frame")))
+
+(defun my/set-frame-themes ()
+  "Configure themes, including theme switching."
+  (let ((day-theme (seq-random-elt (alist-get 'day my/themes)))
+        (night-theme (seq-random-elt (alist-get 'night my/themes))))
+    (load-theme day-theme :no-confirm :no-enable)
+    (load-theme night-theme :no-confirm :no-enable)
+    (run-at-time nil (* 15 60) #'my/maybe-switch-theme day-theme night-theme
+                 #'my/macos-dark-p)))

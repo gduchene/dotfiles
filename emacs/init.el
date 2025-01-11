@@ -108,16 +108,24 @@
 
 ;; Theme Management
 
-(defvar my/day-theme nil "Theme to use during the day.")
-
-(defvar my/night-theme nil "Theme to use during the night.")
-
-(defvar my/fonts
+(defconst my/fonts
   '((:family "Iosevka Fixed Slab" :height 140)
     (:family "Iosevka SS04" :height 140)
     (:family "Iosevka" :height 140)
     (:family "Menlo" :height 120))
   "Fonts to try as default.")
+
+(defconst my/themes
+  `((day . (adwaita
+            leuven
+            modus-operandi
+            tango
+            ,nil))
+    (night . (tango-dark
+              misterioso
+              modus-vivendi
+              wombat)))
+  "Themes to try.")
 
 (let ((hook (cond ((daemonp) 'server-after-make-frame-hook)
                   (window-system 'after-init-hook))))
