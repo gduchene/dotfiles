@@ -25,6 +25,7 @@ directories."
 (setopt default-frame-alist '((height . 40) (left . 0.5)
                               (top . 0.3) (width . 160))
         gc-cons-threshold (* 50 1024 1024)
+        load-prefer-newer t
         package-archives '(("GNU ELPA" . "https://elpa.gnu.org/packages/")
                            ("MELPA"    . "https://melpa.org/packages/"))
         package-user-dir (my/data-file-name "elpa")
