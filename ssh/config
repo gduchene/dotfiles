@@ -1,5 +1,9 @@
 # -*- mode: conf-space -*-
 
+Include ../dotfiles-${UNAME}/ssh/config
+Include ../dotfiles-${DOMAIN}/ssh/config
+Include ../dotfiles-${HOST_SHORT}/ssh/config
+
 Host *
   VerifyHostKeyDNS yes
 
