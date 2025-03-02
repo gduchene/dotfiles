@@ -31,6 +31,9 @@ directories."
         package-user-dir (my/data-file-name "elpa")
         treesit-extra-load-path `(,(my/data-file-name "tree-sitter")))
 
+(when (boundp 'native-comp-eln-load-path)
+  (setcar native-comp-eln-load-path (my/cache-file-name "eln-cache")))
+
 
 ;; Further Early Customization
 
