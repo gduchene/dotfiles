@@ -3,16 +3,28 @@
   co   = checkout
   di   = diff
   dis  = diff --staged
-  fa   = fetch --all --prune
+  fa   = fetch
   gi   = grep -i
   root = rev-parse --show-toplevel
   st   = status
 
 [branch]
   autoSetupRebase = always
+  sort            = -committerdate
+
+[column]
+  ui = auto
 
 [diff]
-  algorithm = histogram
+  algorithm      = histogram
+  colorMoved     = plain
+  mnemonicPrefix = true
+  renames        = true
+
+[fetch]
+  all       = true
+  prune     = true
+  pruneTags = true
 
 [grep]
   lineNumber = true
@@ -27,7 +39,11 @@
   ff = only
 
 [push]
-  followTags = true
+  autoSetupRemote = true
+  followTags      = true
+
+[tag]
+  sort = version:refname
 
 [user]
   name = Grégoire Duchêne
