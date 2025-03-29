@@ -224,6 +224,14 @@
            (eshell-scroll-show-maximum-output nil)))
 
 
+;; Flymake
+
+(use-package flymake
+  :bind (:map flymake-mode-map
+              ("s-[" . flymake-goto-prev-error)
+              ("s-]" . flymake-goto-next-error)))
+
+
 ;; Go
 
 (use-package go-mode
