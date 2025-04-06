@@ -218,10 +218,12 @@
   :config
   (defun my/eshell-clear ()
     (interactive)
-    (let ((input (eshell-get-old-input)))
-      (eshell/clear-scrollback)
-      (eshell-emit-prompt)
-      (insert input)))
+    (if eshell-foreground-command
+        (eshell/clear-scrollback)
+      (let ((input (eshell-get-old-input)))
+        (eshell/clear-scrollback)
+        (eshell-emit-prompt)
+        (insert input))))
   :bind (("C-c e" . eshell)
          :map eshell-mode-map
          ("s-l" . my/eshell-clear))
