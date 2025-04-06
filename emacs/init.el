@@ -214,8 +214,17 @@
 
 ;; Eshell
 
-(use-package eshell
-  :bind (("C-c e" . eshell))
+(use-package esh-mode
+  :config
+  (defun my/eshell-clear ()
+    (interactive)
+    (let ((input (eshell-get-old-input)))
+      (eshell/clear-scrollback)
+      (eshell-emit-prompt)
+      (insert input)))
+  :bind (("C-c e" . eshell)
+         :map eshell-mode-map
+         ("s-l" . my/eshell-clear))
   :custom ((eshell-cmpl-ignore-case t)
            (eshell-aliases-file (expand-file-name "alias" user-emacs-directory))
            (eshell-directory-name (my/cache-file-name "eshell"))
