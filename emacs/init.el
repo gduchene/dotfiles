@@ -119,11 +119,13 @@
   `((day . (adwaita
             leuven
             modus-operandi
+            modus-operandi-tinted
             tango
             ,nil))
     (night . (tango-dark
               misterioso
               modus-vivendi
+              modus-vivendi-tinted
               wombat)))
   "Themes to try.")
 
