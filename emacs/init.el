@@ -1,4 +1,4 @@
-;; Path Configuration
+;; Path Configuration  -*- lexical-binding: t -*-
 
 (setopt abbrev-file-name (my/cache-file-name "abbrev_defs")
         auto-save-list-file-prefix (my/cache-file-name "auto-save-list/")

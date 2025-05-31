@@ -1,4 +1,4 @@
-;; General Configuration
+;; General Configuration  -*- lexical-binding: t -*-
 
 (setopt frame-resize-pixelwise t
         mac-right-command-modifier 'meta

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defconst my/dotfiles-directory
   (file-truename (concat user-emacs-directory "../"))
   "Directory containing all configuration files.")

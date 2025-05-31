@@ -1,4 +1,4 @@
-;; Path Functions
+;; Path Functions  -*- lexical-binding: t -*-
 
 (require 'xdg)
 
