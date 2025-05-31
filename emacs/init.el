@@ -226,6 +226,8 @@
         (eshell/clear-scrollback)
         (eshell-emit-prompt)
         (insert input))))
+  (add-to-list 'eshell-variable-aliases-list
+               `("TERM" ,(lambda () "xterm-256colors") t t))
   :bind (("C-c e" . eshell)
          :map eshell-mode-map
          ("s-l" . my/eshell-clear))
