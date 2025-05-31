@@ -230,7 +230,8 @@
                `("TERM" ,(lambda () "xterm-256colors") t t))
   :bind (("C-c e" . eshell)
          :map eshell-mode-map
-         ("s-l" . my/eshell-clear))
+         ("s-l" . my/eshell-clear)
+         ("s-s" . consult-history))
   :custom ((eshell-cmpl-ignore-case t)
            (eshell-aliases-file (expand-file-name "alias" user-emacs-directory))
            (eshell-directory-name (my/cache-file-name "eshell"))
