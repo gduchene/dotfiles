@@ -235,7 +235,11 @@
   :custom ((eshell-cmpl-ignore-case t)
            (eshell-aliases-file (expand-file-name "alias" user-emacs-directory))
            (eshell-directory-name (my/cache-file-name "eshell"))
-           (eshell-scroll-show-maximum-output nil)))
+           (eshell-hist-ignoredups t)
+           (eshell-history-append t)
+           (eshell-history-size 1024)
+           (eshell-scroll-show-maximum-output nil)
+           (history-delete-duplicates t)))
 
 
 ;; Flymake
