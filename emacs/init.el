@@ -329,6 +329,13 @@
   :mode ("\\.service\\'" "\\.socket\\'" "\\.timer\\'"))
 
 
+;; Tramp
+
+(use-package tramp-cache
+  :after tramp
+  :custom (tramp-persistency-file-name (my/data-file-name "tramp")))
+
+
 ;; Further Customization
 
 (my/load-file-variations "emacs/init")
