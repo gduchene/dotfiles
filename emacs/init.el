@@ -218,6 +218,11 @@
 
 (use-package esh-mode
   :config
+  (defun my/eshell ()
+    (interactive)
+    (if (project-current)
+        (project-eshell)
+      (eshell)))
   (defun my/eshell-clear ()
     (interactive)
     (if eshell-foreground-command
@@ -228,7 +233,7 @@
         (insert input))))
   (add-to-list 'eshell-variable-aliases-list
                `("TERM" ,(lambda () "xterm-256colors") t t))
-  :bind (("C-c e" . eshell)
+  :bind (("C-c e" . my/eshell)
          :map eshell-mode-map
          ("s-l" . my/eshell-clear)
          ("s-s" . consult-history))
