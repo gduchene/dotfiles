@@ -237,7 +237,9 @@
          :map eshell-mode-map
          ("s-l" . my/eshell-clear)
          ("s-s" . consult-history))
-  :custom ((eshell-cmpl-ignore-case t)
+  :custom ((display-comint-buffer-action '(display-buffer-use-some-frame
+                                           (category . comint)))
+           (eshell-cmpl-ignore-case t)
            (eshell-aliases-file (expand-file-name "alias" user-emacs-directory))
            (eshell-directory-name (my/cache-file-name "eshell"))
            (eshell-hist-ignoredups t)
