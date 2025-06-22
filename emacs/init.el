@@ -184,6 +184,14 @@
 (use-package google-c-style :defer t :ensure t)
 
 
+;; Compile
+
+(use-package compile
+  :bind (:map compilation-mode-map
+              ("s-[" . compilation-previous-error)
+              ("s-]" . compilation-next-error)))
+
+
 ;; Dired
 
 (use-package dired
