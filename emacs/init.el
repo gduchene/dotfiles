@@ -297,15 +297,26 @@
 ;; Org
 
 (use-package org
+  :config
+  (defun my/org-agenda-todo ()
+    (interactive)
+    (consult-org-agenda "/TODO"))
+  :bind ("C-c n t" . my/org-agenda-todo)
   :custom
-  ((org-hide-emphasis-markers t)
+  ((org-archive-file-header-format nil)
+   (org-archive-location ".%s_archive::")
+   (org-archive-reversed-order t)
+   (org-hide-emphasis-markers t)
+   (org-log-done 'time)
    (org-startup-folded 'showall))
   :defer t)
 
 (use-package org-roam
   :config (org-roam-db-autosync-enable)
   :bind (("C-c n c" . org-roam-capture)
-         ("C-c n f" . org-roam-node-find))
+         ("C-c n f" . org-roam-node-find)
+         :map org-mode-map
+         ("C-c n i" . org-roam-node-insert))
   :custom
   ((org-id-locations-file (my/data-file-name "org-id-locations"))
    (org-roam-db-location (my/data-file-name "org-roam.db")))

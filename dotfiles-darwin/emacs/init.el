@@ -10,6 +10,10 @@
 
 ;; Org
 
+(use-package org
+  :defer t
+  :custom (org-agenda-files '("~/Documents/ZK/TODO.org")))
+
 (use-package org-roam
   :defer t
   :custom (org-roam-directory "~/Documents/ZK/"))
