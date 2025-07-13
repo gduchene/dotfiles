@@ -289,8 +289,6 @@
   :custom (git-commit-summary-max-length 50)
   :hook ((git-commit-setup . electric-quote-local-mode)))
 
-(use-package jinx :ensure t :hook git-commit-setup)
-
 (use-package magit :bind ("C-c k" . magit-status) :ensure t)
 
 
@@ -355,6 +353,13 @@
     (shell-command (format "swift format -i %s" (buffer-file-name))))
   :hook (swift-mode . eglot-ensure)
   :bind (:map swift-mode-map ("C-c d" . my/swift-format))
+  :ensure t)
+
+
+;; Spell Checking
+
+(use-package jinx
+  :hook (git-commit-setup org-mode text-mode)
   :ensure t)
 
 
