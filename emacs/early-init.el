@@ -8,7 +8,7 @@
 ;; Helper Loading Functions
 
 (defun my/load-file (filename)
-  "Load FILENAME if it exists within the dotfiles directory."
+  "Load FILENAME if it exists within ‘my/dotfiles-directory’."
   (load (concat my/dotfiles-directory
                 (substitute-in-file-name filename)) :no-error))
 

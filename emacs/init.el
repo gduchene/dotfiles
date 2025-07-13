@@ -301,6 +301,7 @@
   (defun my/org-agenda-todo ()
     (interactive)
     (consult-org-agenda "/TODO"))
+  :hook (org-mode . electric-quote-mode)
   :bind ("C-c n t" . my/org-agenda-todo)
   :custom
   ((org-archive-file-header-format nil)
