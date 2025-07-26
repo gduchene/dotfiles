@@ -8,6 +8,18 @@
   (setq insert-directory-program "gls"))
 
 
+;; Eshell
+
+(use-package esh-mode
+  :config
+  (if (fboundp 'eshell/pbclear)
+      (display-warning 'dotfiles "‘eshell/pbclear’ is already bound." :warning)
+    (defun eshell/pbclear ()
+      "Clears the clipboard."
+      (call-process "pbcopy" nil 0)))
+  :defer t)
+
+
 ;; Org
 
 (use-package org
