@@ -129,7 +129,8 @@
               wombat)))
   "Themes to try.")
 
-(let ((hook (cond ((daemonp) 'server-after-make-frame-hook)
+(let ((hook (cond ((and (daemonp) (fboundp 'x-family-fonts))
+                   'server-after-make-frame-hook)
                   (window-system 'after-init-hook))))
   (when hook (add-hook hook #'my/set-frame-font)))
 
