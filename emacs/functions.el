@@ -86,7 +86,3 @@ enabled."
   "Interactively call ‘eglot-code-action-organize-imports’."
   (interactive)
   (call-interactively #'eglot-code-action-organize-imports))
-
-(defmacro my/with-add-hook (hook &rest body)
-  (declare (indent 1) (debug t))
-  `(add-hook ,hook #'(lambda () ,@body)))
