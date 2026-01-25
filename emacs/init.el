@@ -13,6 +13,7 @@
 
 (setopt backup-by-copying t
         confirm-kill-emacs #'y-or-n-p
+        default-input-method "cyrillic-translit"
         delete-old-versions t
         display-time-24hr-format t
         fill-column 72
