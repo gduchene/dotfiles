@@ -59,6 +59,7 @@ if [[ -S ${XDG_RUNTIME_DIR}/emacs/server ]]; then
 else
   export EDITOR=vim
 fi
+export LESS='--RAW-CONTROL-CHARS --clear-screen --ignore-case --use-color'
 export LESSHISTFILE=${XDG_CACHE_HOME}/less_history
 export PYTHONSTARTUP=$(dotfiles_root)/python/rc
 export SQLITE_HISTORY=${XDG_CACHE_HOME}/sqlite_history
