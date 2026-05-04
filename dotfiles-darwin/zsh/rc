@@ -13,6 +13,12 @@ else
   alias lsh='ls -Shlr | cut -f5- -w'
 fi
 
+# Make Homebrew appear right after /usr/local/bin. For some reason,
+# Homebrew appears is at the end of the PATH, which is wrong.
+if (( path[(i)/usr/local/bin] + 1 != path[(i)/opt/homebrew/bin] )); then
+  path[(i)/opt/homebrew/bin]=()
+  path[$((path[(i)/usr/local/bin] + 1)),0]=/opt/homebrew/bin
+fi
 
 if [[ ${TERM_PROGRAM} != iTerm.app ]]; then
   autoload -Uz vcs_info
