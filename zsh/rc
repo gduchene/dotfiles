@@ -21,7 +21,11 @@ zstyle ':completion:*' users root ${USER}
 
 HISTFILE=${XDG_CACHE_HOME}/zsh/history
 HISTSIZE=65535
-PS1='%(?..%F{#ff0000}%?%f )%n@%m:%~ %# '
+if [[ -z ${SSH_CLIENT} ]]; then
+  PS1='%(?..%F{#ff0000}%?%f )%~ %# '
+else
+  PS1='%(?..%F{#ff0000}%?%f )%n@%m:%~ %# '
+fi
 SAVEHIST=${HISTSIZE}
 WORDCHARS=${WORDCHARS/\//}
 
