@@ -213,6 +213,14 @@
 (use-package dockerfile-mode :defer t :ensure t)
 
 
+;; Ebooks
+
+(use-package nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :custom (nov-save-place-file (my/data-file-name "nov-places"))
+  :ensure t)
+
+
 ;; Eglot
 
 (use-package eglot
