@@ -1,0 +1,10 @@
+copy-on-select = clipboard
+cursor-style = block
+cursor-style-blink = false
+font-family = Iosevka Term SS04
+font-family = Menlo
+font-feature = -calt
+font-thicken = true
+macos-titlebar-style = tabs
+shell-integration-features = no-cursor
+theme = light:Monokai Pro Light,dark:Monokai Pro Ristretto
