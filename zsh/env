@@ -26,4 +26,5 @@ setopt EXTENDED_GLOB
 source_if_exists zsh/env
 
 export CARGO_HOME=${XDG_DATA_HOME}/cargo
+export OPAMROOT=${XDG_DATA_HOME}/opam
 export RUSTUP_HOME=${XDG_DATA_HOME}/rustup

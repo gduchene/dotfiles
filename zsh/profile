@@ -2,7 +2,7 @@
 
 () {
   local dir
-  for dir in ~/.local ${CARGO_HOME} ${GOPATH}; do
+  for dir in ~/.local ${CARGO_HOME} ${GOPATH} ${OPAMROOT}/default; do
     [[ -d ${dir}/bin ]] && path=(${dir}/bin ${path})
   done
 }
