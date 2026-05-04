@@ -39,7 +39,7 @@
 (blink-cursor-mode -1)
 (column-number-mode 1)
 (display-time-mode (if (getenv "TMUX") -1 1))
-(electric-indent-mode -1)
+(electric-pair-mode 1)
 (global-auto-revert-mode 1)
 
 (keymap-global-set "C-c DEL" #'bury-buffer)
@@ -308,7 +308,7 @@
   (defun my/org-agenda-todo ()
     (interactive)
     (consult-org-agenda "/TODO"))
-  :hook (org-mode . electric-quote-mode)
+  :hook (org-mode . electric-quote-local-mode)
   :bind ("C-c n t" . my/org-agenda-todo)
   :custom
   ((org-archive-file-header-format nil)
