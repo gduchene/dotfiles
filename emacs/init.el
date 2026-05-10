@@ -370,7 +370,7 @@
 
 (use-package jinx
   :hook (git-commit-setup org-mode text-mode)
-  :custom (jinx-languages "en_US fr_FR")
+  :custom (jinx-languages "en_US fr_FR uk_UA")
   :ensure t)
 
 
