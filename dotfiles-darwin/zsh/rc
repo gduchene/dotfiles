@@ -7,7 +7,11 @@ alias ls='ls -G'
 alias pbclear='pbcopy </dev/null'
 alias rsync='rsync --exclude=.DS_Store'
 
-if (( ${+commands[gls]} )); then
+if command_exists container; then
+  alias co=container
+fi
+
+if command_exists gls; then
   alias lsh='gls -Shrs'
 else
   alias lsh='ls -Shlr | cut -f5- -w'

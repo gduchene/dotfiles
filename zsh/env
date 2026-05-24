@@ -1,5 +1,9 @@
 # -*- mode: shell-script -*-
 
+command_exists() {
+  return $(( !(${+commands[$1]} == 1) ))
+}
+
 dotfiles_root() {
   echo ${${(%):-%x}:A:h:h}
 }
