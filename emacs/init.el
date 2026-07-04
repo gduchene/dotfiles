@@ -13,7 +13,7 @@
 
 (setopt backup-by-copying t
         confirm-kill-emacs #'y-or-n-p
-        default-input-method "cyrillic-translit"
+        default-input-method "ukrainian-translit"
         delete-old-versions t
         display-time-24hr-format t
         fill-column 72
@@ -385,6 +385,37 @@
 (use-package tramp-cache
   :after tramp
   :custom (tramp-persistency-file-name (my/data-file-name "tramp")))
+
+
+;; Ukrainian Input Method
+
+(use-package quail
+  :config
+  (quail-define-package
+   "ukrainian-translit" "Ukrainian" "Укр" t
+   "Transliterated keyboard layout suitable for Ukrainian.
+This is inspired by ‘cyrillic-translit’ with defaults more suited for
+Ukrainian, e.g. i = і instead of i = и."
+   nil t t t t nil nil nil nil nil t)
+  (quail-define-rules
+   ("a" ?а) ("b" ?б) ("v" ?в) ("w" ?в) ("g" ?г) ("g'" ?ґ) ("d" ?д)
+   ("e" ?е) ("je" ?є) ("zh" ?ж) ("z" ?з) ("y" ?и) ("i" ?і)
+   ("ji" ?ї) ("j" ?й) ("k" ?к) ("l" ?л)
+   ("m" ?м) ("n" ?н) ("o" ?о) ("p" ?п) ("r" ?р) ("s" ?с) ("t" ?т) ("u" ?у)
+   ("f" ?ф) ("x" ?х) ("h" ?х) ("kh" ?х) ("c" ?ц) ("ch" ?ч)
+   ("sh" ?ш) ("shch" ?щ) ("sj" ?щ) ("'" ?ь)
+   ("yu" ?ю) ("ju" ?ю)
+   ("ya" ?я) ("ja" ?я) ("q" ?я)
+
+   ("A" ?А) ("B" ?Б) ("V" ?В) ("W" ?В) ("G" ?Г) ("G'" ?Ґ) ("D" ?Д)
+   ("E" ?Е) ("Je" ?Є) ("JE" ?Є) ("Zh" ?Ж) ("ZH" ?Ж) ("Z" ?З) ("Y" ?У) ("I" ?І)
+   ("Ji" ?Ї) ("JI" ?Ї) ("J" ?Й) ("K" ?К) ("L" ?Л)
+   ("M" ?М) ("N" ?Н) ("O" ?О) ("P" ?П) ("R" ?Р) ("S" ?С) ("T" ?Т) ("U" ?У)
+   ("F" ?Ф) ("X" ?Х) ("H" ?Х) ("Kh" ?Х) ("KH" ?Х) ("C" ?Ц) ("Ch" ?Ч) ("CH" ?Ч)
+   ("Sh" ?Ш) ("SH" ?Ш) ("Shch" ?Щ) ("SHCH" ?Щ) ("Sj" ?Щ) ("SJ" ?Щ) ("''" ?Ь)
+   ("Yu" ?Ю) ("YU" ?Ю) ("Ju" ?Ю) ("JU" ?Ю)
+   ("Ya" ?Я) ("YA" ?Я) ("Ja" ?Я) ("JA" ?Я) ("Q" ?Я))
+  :defer t)
 
 
 ;; Further Customization
