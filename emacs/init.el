@@ -118,7 +118,6 @@
 
 (defconst my/themes
   `((day . (adwaita
-            leuven
             modus-operandi
             modus-operandi-tinted
             tango
