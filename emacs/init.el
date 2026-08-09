@@ -42,6 +42,7 @@
 (display-time-mode (if (getenv "TMUX") -1 1))
 (electric-pair-mode 1)
 (global-auto-revert-mode 1)
+(which-key-mode 1)
 
 (keymap-global-set "C-c DEL" #'bury-buffer)
 (keymap-global-set "C-c j" #'join-line)
