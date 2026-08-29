@@ -10,3 +10,6 @@ Host *
 Host github
   HostName github.com
   User     git
+
+Match exec "test -S ~/.ssh/agent.sock"
+  IdentityAgent ~/.ssh/agent.sock

@@ -1,3 +1,4 @@
+agent.sock
 authorized_keys
 id_*
 known_hosts
