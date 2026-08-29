@@ -111,9 +111,8 @@
 ;; Theme Management
 
 (defconst my/fonts
-  '((:family "Iosevka Fixed Slab" :height 140)
+  '((:family "Iosevka Baguette" :height 140)
     (:family "Iosevka SS04" :height 140)
-    (:family "Iosevka" :height 140)
     (:family "Menlo" :height 120))
   "Fonts to try as default.")
 

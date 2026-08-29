@@ -1,0 +1,8 @@
+build-container-image:
+    podman build --tag iosevka-builder:latest .
+
+build-iosevka: build-container-image
+    podman run --rm --volume "${PWD}:/work" iosevka-builder:latest
+
+clean:
+    podman image rm iosevka-builder:latest

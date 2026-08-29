@@ -1,6 +1,7 @@
 copy-on-select = clipboard
 cursor-style = block
 cursor-style-blink = false
+font-family = Iosevka Baguette
 font-family = Iosevka Term SS04
 font-family = Menlo
 font-feature = -calt
