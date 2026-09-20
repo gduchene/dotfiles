@@ -17,6 +17,13 @@ else
   alias lsh='ls -Shlr | cut -f5- -w'
 fi
 
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+  # Unlike the /usr/local/… path, this path has to be manually added. We
+  # append it before the first system-wide ones and after the dotfiles
+  # ones.
+  fpath[${fpath[(i)/usr/local/share/zsh/site-functions]},0]=/opt/homebrew/share/zsh/site-functions
+fi
+
 # Make Homebrew appear right after /usr/local/bin. For some reason,
 # Homebrew appears is at the end of the PATH, which is wrong.
 if (( path[(i)/usr/local/bin] + 1 != path[(i)/opt/homebrew/bin] )); then
