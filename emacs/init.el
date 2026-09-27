@@ -242,12 +242,7 @@
       (eshell)))
   (defun my/eshell-clear ()
     (interactive)
-    (if eshell-foreground-command
-        (eshell/clear-scrollback)
-      (let ((input (eshell-get-old-input)))
-        (eshell/clear-scrollback)
-        (eshell-emit-prompt)
-        (insert input))))
+    (eshell/clear-scrollback))
   (add-to-list 'eshell-variable-aliases-list
                `("TERM" ,(lambda () "xterm-256colors") t t))
   :bind (("C-c e" . my/eshell)
