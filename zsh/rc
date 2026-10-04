@@ -45,8 +45,6 @@ alias grep='grep --color=auto'
 alias k=kubectl
 alias kill-emacs-server='emacsclient -e "(save-buffers-kill-emacs)"'
 alias la='ls -A'
-alias ll='ls -hl'
-alias lla='ls -Ahl'
 alias mv='mv -i'
 alias pgrep='pgrep -fl'
 alias pm=' pm'
@@ -54,7 +52,18 @@ alias rm='rm -i'
 alias s=swift
 alias senv='env | sort'
 alias spm='swift package'
-alias tree='tree --gitignore'
+
+if command_exists eza; then
+  alias ls=eza
+  alias ll='ls -l'
+  alias lla='ls -Al'
+  alias tree='eza -T'
+else
+  alias la='ls -A'
+  alias ll='ls -hl'
+  alias lla='ls -Ahl'
+  alias tree='tree --gitignore'
+fi
 
 bindkey -e
 

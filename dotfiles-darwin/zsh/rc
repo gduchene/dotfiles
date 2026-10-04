@@ -3,12 +3,15 @@
 autoload -Uz vault
 
 alias df='df -Ph'
-alias ls='ls -G'
 alias pbclear='pbcopy </dev/null'
 alias rsync='rsync --exclude=.DS_Store'
 
 if command_exists container; then
   alias co=container
+fi
+
+if ! command_exists eza; then
+  alias ls='ls -G'
 fi
 
 if command_exists gls; then
