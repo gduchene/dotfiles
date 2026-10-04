@@ -17,6 +17,10 @@ else
   alias lsh='ls -Shlr | cut -f5- -w'
 fi
 
+if command_exists pstree; then
+  alias pstree='pstree -g 3'
+fi
+
 if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
   # Unlike the /usr/local/… path, this path has to be manually added. We
   # append it before the first system-wide ones and after the dotfiles
